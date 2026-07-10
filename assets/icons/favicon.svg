@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="APP GARAGE">
+  <rect width="64" height="64" rx="8" fill="#050807"/>
+  <path d="M12 48V16h16c7 0 11 4 11 10 0 4-2 7-5 9l8 13H31l-7-12h-3v12H12Zm9-20h6c2 0 4-1 4-3s-2-3-4-3h-6v6Z" fill="#6dff9f"/>
+  <path d="M45 16h7v32h-7z" fill="#f2fff8"/>
+</svg>

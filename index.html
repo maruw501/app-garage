@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>APP GARAGE | オリジナルWebアプリ集</title>
+    <meta
+      name="description"
+      content="APP GARAGEは、日常や仕事を少し便利にするオリジナルWebアプリを一覧で紹介し、すぐに開けるポートフォリオ型ホームページです。"
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="APP GARAGE | オリジナルWebアプリ集">
+    <meta
+      property="og:description"
+      content="現場の困りごとや日常の不便から生まれたWebアプリを公開しています。"
+    >
+    <meta property="og:site_name" content="APP GARAGE">
+    <meta name="theme-color" content="#050807">
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="apps.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">本文へ移動</a>
+
+    <header class="site-header" aria-label="サイトヘッダー">
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="トップへ戻る">
+          <span class="brand-mark" aria-hidden="true">AG</span>
+          <span class="brand-text" data-site-name>APP GARAGE</span>
+        </a>
+
+        <nav class="site-nav" aria-label="メインメニュー">
+          <a href="#apps">APPS</a>
+          <a href="#about">ABOUT</a>
+          <a href="#contact">CONTACT</a>
+        </nav>
+
+        <a class="nav-button" href="#apps">アプリを見る</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero section-shell" id="top" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <p class="section-kicker">ORIGINAL WEB APPS</p>
+            <h1 id="hero-title">
+              毎日を少し便利にする、<br>
+              オリジナルアプリ。
+            </h1>
+            <p>
+              現場の困りごとや、日常の「もっとこうだったらいいのに」から生まれたWebアプリを公開しています。
+            </p>
+            <div class="hero-actions" aria-label="主要リンク">
+              <a class="button button-primary" href="#apps">アプリ一覧を見る</a>
+              <a class="button button-secondary" href="#about">このサイトについて</a>
+            </div>
+          </div>
+
+          <div class="hero-panel reveal" aria-label="公開情報">
+            <div class="terminal-bar" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="panel-grid">
+              <div class="metric-card">
+                <span>公開アプリ数</span>
+                <strong><span id="appCount">0</span></strong>
+              </div>
+              <div class="metric-card">
+                <span>スマホ対応</span>
+                <strong>OK</strong>
+              </div>
+              <div class="metric-card">
+                <span>無料で利用可能</span>
+                <strong>FREE</strong>
+              </div>
+            </div>
+            <div class="console-preview" aria-hidden="true">
+              <p><span>&gt;</span> loading app catalog...</p>
+              <p><span>&gt;</span> no login / no tracking / static files</p>
+              <p><span>&gt;</span> ready for Cloudflare Pages</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="apps-section section-shell" id="apps" aria-labelledby="apps-title">
+        <div class="section-heading reveal">
+          <p class="section-kicker">APPS</p>
+          <h2 id="apps-title">公開アプリ一覧</h2>
+          <p>カテゴリやキーワードで探して、気になるアプリの詳細を確認できます。</p>
+        </div>
+
+        <div class="app-tools reveal" aria-label="アプリ検索とカテゴリ">
+          <label class="search-box" for="appSearch">
+            <span>アプリを検索</span>
+            <input
+              id="appSearch"
+              type="search"
+              autocomplete="off"
+              placeholder="アプリ名、説明、タグで検索"
+            >
+          </label>
+          <div class="category-tabs" id="categoryTabs" role="group" aria-label="カテゴリで絞り込み"></div>
+        </div>
+
+        <div class="app-grid" id="appGrid" aria-live="polite"></div>
+        <p class="empty-state" id="emptyState" hidden>該当するアプリがありません</p>
+
+        <noscript>
+          <section class="noscript-panel" aria-label="サンプルアプリ一覧">
+            <h3>サンプルアプリ</h3>
+            <p>JavaScriptが無効な場合、検索やモーダル表示は利用できませんが、このサイトでは以下のアプリを紹介しています。</p>
+            <ul>
+              <li>スマートアンケート</li>
+              <li>営業連絡メーカー</li>
+              <li>見通しチェック</li>
+              <li>AMポータル</li>
+              <li>画像プロンプト工房</li>
+              <li>社長の野望</li>
+            </ul>
+          </section>
+        </noscript>
+      </section>
+
+      <section class="about-section section-shell" id="about" aria-labelledby="about-title">
+        <div class="about-grid">
+          <div class="section-heading reveal">
+            <p class="section-kicker">ABOUT</p>
+            <h2 id="about-title">
+              「面倒」を、<br>
+              アプリでシンプルに。
+            </h2>
+            <p>
+              このサイトでは、実際の仕事や生活の中で感じた不便を解決するために開発したアプリを公開しています。専門知識がなくても、迷わず使えることを大切にしています。
+            </p>
+          </div>
+
+          <div class="feature-list" aria-label="このサイトの特徴">
+            <article class="feature-card reveal">
+              <span aria-hidden="true">01</span>
+              <h3>かんたん</h3>
+              <p>説明を読まなくても使える、直感的な操作</p>
+            </article>
+            <article class="feature-card reveal">
+              <span aria-hidden="true">02</span>
+              <h3>実用的</h3>
+              <p>見た目だけでなく、現場で本当に役立つ機能</p>
+            </article>
+            <article class="feature-card reveal">
+              <span aria-hidden="true">03</span>
+              <h3>スピーディー</h3>
+              <p>必要な操作を、できるだけ少ない手順で実行</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section section-shell" id="contact" aria-labelledby="contact-title">
+        <div class="contact-panel reveal">
+          <p class="section-kicker">CONTACT</p>
+          <h2 id="contact-title">
+            こんなアプリが欲しい、を<br>
+            かたちにします。
+          </h2>
+          <p>
+            業務効率化アプリや、ちょっとした便利ツールのご相談はこちらから。
+          </p>
+          <a class="button button-primary" href="#" data-contact-link>お問い合わせする</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p><strong data-site-name>APP GARAGE</strong></p>
+        <p>&copy; <span id="copyrightYear">2026</span> <span data-site-name>APP GARAGE</span>. All rights reserved.</p>
+        <a class="top-link" href="#top">トップへ戻る</a>
+      </div>
+    </footer>
+
+    <div class="modal" id="appModal" hidden aria-hidden="true">
+      <div class="modal-backdrop" data-modal-close></div>
+      <section
+        class="modal-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+        aria-describedby="modalDescription"
+        tabindex="-1"
+      >
+        <button class="modal-close" type="button" aria-label="詳細を閉じる" data-modal-close>×</button>
+        <div class="modal-heading">
+          <span class="modal-icon" id="modalIcon" aria-hidden="true">AG</span>
+          <div>
+            <p class="modal-category" id="modalCategory">カテゴリ</p>
+            <h2 id="modalTitle">アプリ名</h2>
+          </div>
+        </div>
+        <p class="status-pill" id="modalStatus">準備中</p>
+        <p id="modalDescription"></p>
+        <p class="modal-long" id="modalLongDescription"></p>
+        <div class="modal-tags" id="modalTags" aria-label="タグ"></div>
+        <a class="button button-primary modal-open-link" id="modalOpenLink" href="#" target="_blank" rel="noopener">
+          アプリを開く
+        </a>
+      </section>
+    </div>
+  </body>
+</html>

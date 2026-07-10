@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>APP GARAGE | オリジナルWebアプリ集</title>
+    <title>APP GARAGE｜無料アプリ公開・オリジナルアプリ開発</title>
     <meta
       name="description"
-      content="APP GARAGEは、日常や仕事を少し便利にするオリジナルWebアプリを一覧で紹介し、すぐに開けるポートフォリオ型ホームページです。"
+      content="スマートフォンですぐ使える無料Webアプリを公開しています。企業、店舗、介護施設、個人事業主向けの専用アプリ開発にも対応。開発費5万円から、保守費用月額1,000円から、完全買い切りプランも相談可能です。"
     >
     <meta property="og:type" content="website">
-    <meta property="og:title" content="APP GARAGE | オリジナルWebアプリ集">
+    <meta property="og:title" content="APP GARAGE｜無料アプリ公開・オリジナルアプリ開発">
     <meta
       property="og:description"
-      content="現場の困りごとや日常の不便から生まれたWebアプリを公開しています。"
+      content="無料Webアプリの公開と、企業・店舗・介護施設・個人事業主向けのオリジナルWebアプリ開発相談を受け付けています。"
     >
     <meta property="og:site_name" content="APP GARAGE">
     <meta name="theme-color" content="#050807">
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
-    <script src="apps.js" defer></script>
+    <script src="js/app-data.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -26,18 +26,20 @@
 
     <header class="site-header" aria-label="サイトヘッダー">
       <div class="header-inner">
-        <a class="brand" href="#top" aria-label="トップへ戻る">
+        <a class="brand" href="#top" aria-label="APP GARAGEトップへ">
           <span class="brand-mark" aria-hidden="true">AG</span>
           <span class="brand-text" data-site-name>APP GARAGE</span>
         </a>
 
         <nav class="site-nav" aria-label="メインメニュー">
-          <a href="#apps">APPS</a>
-          <a href="#about">ABOUT</a>
+          <a href="#free-apps">FREE</a>
+          <a href="#development">DEV</a>
+          <a href="#case-studies">WORKS</a>
+          <a href="#service">SERVICE</a>
           <a href="#contact">CONTACT</a>
         </nav>
 
-        <a class="nav-button" href="#apps">アプリを見る</a>
+        <a class="nav-button" href="#contact">相談する</a>
       </div>
     </header>
 
@@ -45,119 +47,183 @@
       <section class="hero section-shell" id="top" aria-labelledby="hero-title">
         <div class="hero-grid">
           <div class="hero-copy reveal">
-            <p class="section-kicker">ORIGINAL WEB APPS</p>
+            <p class="section-kicker">FREE APPS & CUSTOM DEVELOPMENT</p>
             <h1 id="hero-title">
-              毎日を少し便利にする、<br>
-              オリジナルアプリ。
+              無料アプリを公開。<br>
+              あなた専用のアプリも開発します。
             </h1>
             <p>
-              現場の困りごとや、日常の「もっとこうだったらいいのに」から生まれたWebアプリを公開しています。
+              スマートフォンですぐ使える便利な無料アプリを公開しています。店舗運営、介護、事務作業、アンケート、集計など、お客様専用のWebアプリ開発にも対応します。
             </p>
             <div class="hero-actions" aria-label="主要リンク">
-              <a class="button button-primary" href="#apps">アプリ一覧を見る</a>
-              <a class="button button-secondary" href="#about">このサイトについて</a>
+              <a class="button button-primary" href="#free-apps">無料アプリを見る</a>
+              <a class="button button-secondary" href="#contact">アプリ開発を相談する</a>
             </div>
           </div>
 
-          <div class="hero-panel reveal" aria-label="公開情報">
+          <div class="hero-panel reveal" aria-label="サイト概要">
             <div class="terminal-bar" aria-hidden="true">
               <span></span>
               <span></span>
               <span></span>
             </div>
             <div class="panel-grid">
-              <div class="metric-card">
-                <span>公開アプリ数</span>
-                <strong><span id="appCount">0</span></strong>
+              <div class="metric-card metric-free">
+                <span>無料アプリ</span>
+                <strong>3個</strong>
+                <small>公開予定</small>
               </div>
-              <div class="metric-card">
-                <span>スマホ対応</span>
-                <strong>OK</strong>
+              <div class="metric-card metric-build">
+                <span>アプリ開発</span>
+                <strong>5万円～</strong>
+                <small>内容に応じて見積り</small>
               </div>
-              <div class="metric-card">
-                <span>無料で利用可能</span>
-                <strong>FREE</strong>
+              <div class="metric-card metric-care">
+                <span>保守費用</span>
+                <strong>月額1,000円～</strong>
+                <small>軽微な修正・更新</small>
               </div>
             </div>
             <div class="console-preview" aria-hidden="true">
-              <p><span>&gt;</span> loading app catalog...</p>
-              <p><span>&gt;</span> no login / no tracking / static files</p>
-              <p><span>&gt;</span> ready for Cloudflare Pages</p>
+              <p><span>&gt;</span> free apps: roadmap ready</p>
+              <p><span>&gt;</span> custom apps: business / care / store</p>
+              <p><span>&gt;</span> static site: Cloudflare Pages</p>
             </div>
           </div>
         </div>
       </section>
 
+      <section class="apps-section section-shell" id="free-apps" aria-labelledby="free-title">
+        <div class="section-heading reveal">
+          <p class="section-kicker">FREE APPS</p>
+          <h2 id="free-title">無料で使えるアプリ</h2>
+          <p>
+            登録不要または簡単な操作ですぐに使える、オリジナルWebアプリを公開しています。スマートフォンやパソコンから無料で利用できます。
+          </p>
+        </div>
+        <div class="free-app-grid" id="freeAppGrid" aria-live="polite"></div>
+      </section>
+
+      <section class="apps-section section-shell" id="development" aria-labelledby="development-title">
+        <div class="section-heading reveal">
+          <p class="section-kicker">IN DEVELOPMENT</p>
+          <h2 id="development-title">現在開発中</h2>
+          <p>今後無料公開を予定しているアプリや、新しい機能を開発しています。</p>
+        </div>
+        <div class="development-grid" id="developmentGrid" aria-live="polite"></div>
+      </section>
+
+      <section class="apps-section section-shell" id="case-studies" aria-labelledby="case-title">
+        <div class="section-heading reveal">
+          <p class="section-kicker">WORKS</p>
+          <h2 id="case-title">こんなアプリも開発できます</h2>
+          <p class="section-subtitle">開発事例</p>
+          <p>
+            実際の業務や日常の困りごとに合わせて開発したアプリの一例です。一般公開していないアプリもありますが、同様の仕組みをお客様の業務に合わせて開発できます。
+          </p>
+        </div>
+        <div class="case-grid" id="caseStudyGrid" aria-live="polite"></div>
+      </section>
+
       <section class="apps-section section-shell" id="apps" aria-labelledby="apps-title">
         <div class="section-heading reveal">
-          <p class="section-kicker">APPS</p>
-          <h2 id="apps-title">公開アプリ一覧</h2>
-          <p>カテゴリやキーワードで探して、気になるアプリの詳細を確認できます。</p>
+          <p class="section-kicker">CATALOG</p>
+          <h2 id="apps-title">アプリ一覧</h2>
+          <p>無料アプリ、開発中、開発事例をまとめて検索できます。</p>
         </div>
 
-        <div class="app-tools reveal" aria-label="アプリ検索とカテゴリ">
+        <div class="app-tools reveal" aria-label="アプリ検索と絞り込み">
           <label class="search-box" for="appSearch">
-            <span>アプリを検索</span>
+            <span>キーワード検索</span>
             <input
               id="appSearch"
               type="search"
               autocomplete="off"
-              placeholder="アプリ名、説明、タグで検索"
+              placeholder="アプリ名、説明、カテゴリ、タグ、機能で検索"
             >
           </label>
-          <div class="category-tabs" id="categoryTabs" role="group" aria-label="カテゴリで絞り込み"></div>
+          <div class="filter-stack">
+            <div class="filter-tabs" id="typeTabs" role="group" aria-label="種類で絞り込み"></div>
+            <div class="filter-tabs filter-tabs-secondary" id="categoryTabs" role="group" aria-label="カテゴリで絞り込み"></div>
+          </div>
         </div>
 
         <div class="app-grid" id="appGrid" aria-live="polite"></div>
         <p class="empty-state" id="emptyState" hidden>該当するアプリがありません</p>
 
         <noscript>
-          <section class="noscript-panel" aria-label="サンプルアプリ一覧">
-            <h3>サンプルアプリ</h3>
-            <p>JavaScriptが無効な場合、検索やモーダル表示は利用できませんが、このサイトでは以下のアプリを紹介しています。</p>
-            <ul>
-              <li>スマートアンケート</li>
-              <li>営業連絡メーカー</li>
-              <li>見通しチェック</li>
-              <li>AMポータル</li>
-              <li>画像プロンプト工房</li>
-              <li>社長の野望</li>
-            </ul>
+          <section class="noscript-panel" aria-label="アプリ一覧">
+            <h3>アプリ一覧</h3>
+            <p>JavaScriptが無効な場合、検索や詳細表示は利用できません。主な掲載内容は「すぐ聞く」「第2弾アプリ」「第3弾アプリ」「昼食連絡ボード」などです。</p>
           </section>
         </noscript>
       </section>
 
-      <section class="about-section section-shell" id="about" aria-labelledby="about-title">
-        <div class="about-grid">
+      <section class="service-section section-shell" id="service" aria-labelledby="service-title">
+        <div class="service-grid">
           <div class="section-heading reveal">
-            <p class="section-kicker">ABOUT</p>
-            <h2 id="about-title">
-              「面倒」を、<br>
-              アプリでシンプルに。
-            </h2>
+            <p class="section-kicker">CUSTOM DEVELOPMENT</p>
+            <h2 id="service-title">あなた専用のアプリを開発します。</h2>
             <p>
-              このサイトでは、実際の仕事や生活の中で感じた不便を解決するために開発したアプリを公開しています。専門知識がなくても、迷わず使えることを大切にしています。
+              市販のサービスでは使いにくい業務や、紙、Excel、LINEなどで管理している作業を、お客様専用の使いやすいWebアプリにします。
             </p>
           </div>
-
-          <div class="feature-list" aria-label="このサイトの特徴">
-            <article class="feature-card reveal">
-              <span aria-hidden="true">01</span>
-              <h3>かんたん</h3>
-              <p>説明を読まなくても使える、直感的な操作</p>
+          <div class="service-list" aria-label="開発サービス">
+            <article class="service-card reveal">
+              <span>01</span>
+              <h3>業務効率化アプリ</h3>
+              <p>毎日の入力、確認、集計、報告作業を簡単にします。</p>
             </article>
-            <article class="feature-card reveal">
-              <span aria-hidden="true">02</span>
-              <h3>実用的</h3>
-              <p>見た目だけでなく、現場で本当に役立つ機能</p>
+            <article class="service-card reveal">
+              <span>02</span>
+              <h3>アンケート・フォーム</h3>
+              <p>スマートフォンから簡単に回答できるアンケートや申込フォームを作成します。</p>
             </article>
-            <article class="feature-card reveal">
-              <span aria-hidden="true">03</span>
-              <h3>スピーディー</h3>
-              <p>必要な操作を、できるだけ少ない手順で実行</p>
+            <article class="service-card reveal">
+              <span>03</span>
+              <h3>店舗・施設管理</h3>
+              <p>売上、予定、点検、報告、利用者情報などをまとめて管理できます。</p>
+            </article>
+            <article class="service-card reveal">
+              <span>04</span>
+              <h3>社内専用アプリ</h3>
+              <p>一般公開せず、社内や関係者だけで利用するアプリも開発できます。</p>
+            </article>
+            <article class="service-card reveal">
+              <span>05</span>
+              <h3>オリジナルツール</h3>
+              <p>既存サービスでは対応できない独自の仕組みをアプリにします。</p>
             </article>
           </div>
         </div>
+      </section>
+
+      <section class="pricing-section section-shell" id="pricing" aria-labelledby="pricing-title">
+        <div class="section-heading reveal">
+          <p class="section-kicker">PRICE</p>
+          <h2 id="pricing-title">料金の目安</h2>
+          <p>小さく始めて、必要に応じて機能を育てていける料金設計です。</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card reveal">
+            <span>アプリ開発</span>
+            <strong>50,000円～</strong>
+            <p>必要な機能、画面数、データ保存の有無などを確認し、個別にお見積りします。</p>
+          </article>
+          <article class="price-card reveal">
+            <span>保守費用</span>
+            <strong>月額1,000円～</strong>
+            <p>公開後の軽微な修正、動作確認、更新などを行います。対応内容によって料金が変わります。</p>
+          </article>
+          <article class="price-card reveal">
+            <span>完全買い切りプラン</span>
+            <strong>要相談</strong>
+            <p>月額保守を付けず、完成したアプリを買い切るプランにも対応します。開発内容や引き渡し方法によって料金をお見積りします。</p>
+          </article>
+        </div>
+        <p class="price-note reveal">
+          ※表示料金は目安です。必要な機能、画面数、ログイン機能、データ保存、外部サービスとの連携などにより料金が変わります。正式な料金はご相談内容を確認したうえでお見積りします。
+        </p>
       </section>
 
       <section class="contact-section section-shell" id="contact" aria-labelledby="contact-title">
@@ -165,12 +231,18 @@
           <p class="section-kicker">CONTACT</p>
           <h2 id="contact-title">
             こんなアプリが欲しい、を<br>
-            かたちにします。
+            お聞かせください。
           </h2>
           <p>
-            業務効率化アプリや、ちょっとした便利ツールのご相談はこちらから。
+            作りたいアプリの内容が決まっていなくても問題ありません。現在困っている作業や、簡単にしたい業務をお知らせください。
           </p>
-          <a class="button button-primary" href="#" data-contact-link>お問い合わせする</a>
+          <ul class="contact-points" aria-label="お問い合わせの特徴">
+            <li>初回相談無料</li>
+            <li>見積り後に検討可能</li>
+            <li>完全買い切りプラン相談可能</li>
+            <li>社内専用アプリ対応可能</li>
+          </ul>
+          <a class="button button-primary" href="#" data-contact-link>無料で相談する</a>
         </div>
       </section>
     </main>
@@ -201,12 +273,16 @@
             <h2 id="modalTitle">アプリ名</h2>
           </div>
         </div>
-        <p class="status-pill" id="modalStatus">準備中</p>
+        <p class="status-pill" id="modalStatus">開発事例</p>
         <p id="modalDescription"></p>
         <p class="modal-long" id="modalLongDescription"></p>
+        <div class="modal-detail-grid" id="modalDetails"></div>
         <div class="modal-tags" id="modalTags" aria-label="タグ"></div>
+        <p class="case-note" id="caseNote" hidden>
+          ※こちらは開発事例です。現在、一般公開はしていません。同様の機能を、お客様の業務に合わせて開発できます。
+        </p>
         <a class="button button-primary modal-open-link" id="modalOpenLink" href="#" target="_blank" rel="noopener">
-          アプリを開く
+          無料で使う
         </a>
       </section>
     </div>

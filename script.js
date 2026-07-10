@@ -1,17 +1,15 @@
 (function () {
   "use strict";
 
-  const config = window.SITE_CONFIG || {
-    siteName: "APP GARAGE",
-    contactEmail: "",
-    contactSubject: "お問い合わせ",
-  };
-  const apps = Array.isArray(window.APPS) ? window.APPS : [];
-  const categories = Array.isArray(window.APP_CATEGORIES)
-    ? window.APP_CATEGORIES
-    : [{ id: "all", label: "すべて" }];
+  const config = window.SITE_CONFIG || {};
+  const apps = Array.isArray(window.APPS) ? window.APPS.filter((app) => app.published !== false) : [];
+  const typeFilters = Array.isArray(window.TYPE_FILTERS) ? window.TYPE_FILTERS : [{ id: "all", label: "すべて" }];
+  const categoryFilters = Array.isArray(window.CATEGORY_FILTERS)
+    ? window.CATEGORY_FILTERS
+    : [{ id: "all", label: "すべてのカテゴリ" }];
 
   const state = {
+    type: "all",
     category: "all",
     query: "",
     lastFocus: null,
@@ -24,8 +22,9 @@
 
   function init() {
     applySiteConfig();
-    renderCategoryTabs();
-    renderApps();
+    renderFeaturedSections();
+    renderFilterTabs();
+    renderCatalog();
     bindSearch();
     bindModalEvents();
     setupRevealAnimation();
@@ -36,29 +35,40 @@
     $$("[data-site-name]").forEach((element) => {
       element.textContent = siteName;
     });
-    document.title = `${siteName} | オリジナルWebアプリ集`;
-
-    const appCount = $("#appCount");
-    if (appCount) {
-      appCount.textContent = String(apps.length);
-    }
 
     const year = $("#copyrightYear");
-    if (year) {
-      year.textContent = String(new Date().getFullYear());
-    }
+    if (year) year.textContent = String(new Date().getFullYear());
 
     const contactLink = $("[data-contact-link]");
     if (contactLink) {
-      const email = (config.contactEmail || "").trim();
-      const subject = encodeURIComponent(config.contactSubject || "お問い合わせ");
-      contactLink.href = email ? `mailto:${email}?subject=${subject}` : "#";
-      if (!email) {
-        contactLink.setAttribute("aria-disabled", "true");
-        contactLink.classList.add("is-disabled");
-        contactLink.addEventListener("click", (event) => event.preventDefault());
-      }
+      contactLink.href = buildMailto();
     }
+  }
+
+  function buildMailto() {
+    const email = config.contactEmail || "maruw@outlook.jp";
+    const subject = encodeURIComponent(config.contactSubject || "アプリ開発についての相談");
+    const body = encodeURIComponent((config.contactBodyItems || []).join("\n"));
+    return `mailto:${email}?subject=${subject}&body=${body}`;
+  }
+
+  function renderFeaturedSections() {
+    renderSection("#freeAppGrid", apps.filter((app) => app.type === "free" || app.id === "free-app-02" || app.id === "free-app-03"), {
+      cardMode: "spotlight",
+    });
+    renderSection("#developmentGrid", apps.filter((app) => app.type === "development"), {
+      cardMode: "development",
+    });
+    renderSection("#caseStudyGrid", apps.filter((app) => app.type === "case-study"), {
+      cardMode: "case-study",
+    });
+  }
+
+  function renderSection(selector, list, options) {
+    const container = $(selector);
+    if (!container) return;
+    container.innerHTML = "";
+    list.forEach((app) => container.append(createAppCard(app, options)));
   }
 
   function bindSearch() {
@@ -66,65 +76,74 @@
     if (!searchInput) return;
     searchInput.addEventListener("input", (event) => {
       state.query = event.target.value.trim().toLowerCase();
-      renderApps();
+      renderCatalog();
     });
   }
 
-  function renderCategoryTabs() {
-    const tabs = $("#categoryTabs");
+  function renderFilterTabs() {
+    renderTabs("#typeTabs", typeFilters, state.type, (id) => {
+      state.type = id;
+      renderFilterTabs();
+      renderCatalog();
+    });
+
+    renderTabs("#categoryTabs", categoryFilters, state.category, (id) => {
+      state.category = id;
+      renderFilterTabs();
+      renderCatalog();
+    });
+  }
+
+  function renderTabs(selector, filters, activeId, onSelect) {
+    const tabs = $(selector);
     if (!tabs) return;
     tabs.innerHTML = "";
-
-    categories.forEach((category) => {
+    filters.forEach((filter) => {
       const button = document.createElement("button");
       button.type = "button";
-      button.textContent = category.label;
-      button.setAttribute("aria-pressed", String(category.id === state.category));
-      button.addEventListener("click", () => {
-        state.category = category.id;
-        renderCategoryTabs();
-        renderApps();
-      });
+      button.textContent = filter.label;
+      button.setAttribute("aria-pressed", String(filter.id === activeId));
+      button.addEventListener("click", () => onSelect(filter.id));
       tabs.append(button);
     });
   }
 
-  function renderApps() {
+  function renderCatalog() {
     const grid = $("#appGrid");
     const empty = $("#emptyState");
     if (!grid || !empty) return;
 
     const visibleApps = apps.filter(matchesCurrentFilter);
     grid.innerHTML = "";
-
-    visibleApps.forEach((app) => {
-      grid.append(createAppCard(app));
-    });
-
+    visibleApps.forEach((app) => grid.append(createAppCard(app, { cardMode: "catalog" })));
     empty.hidden = visibleApps.length > 0;
   }
 
   function matchesCurrentFilter(app) {
-    const categoryMatches = state.category === "all" || app.category === state.category;
-    if (!categoryMatches) return false;
+    if (state.type !== "all" && app.type !== state.type) return false;
+    if (state.category !== "all" && app.category !== state.category && !(app.tags || []).includes(state.category)) {
+      return false;
+    }
     if (!state.query) return true;
 
     const searchable = [
       app.title,
-      app.categoryLabel,
+      app.catchCopy,
+      app.category,
       app.description,
       app.longDescription,
-      ...(Array.isArray(app.tags) ? app.tags : []),
+      ...(app.features || []),
+      ...(app.tags || []),
     ]
       .join(" ")
       .toLowerCase();
-
     return searchable.includes(state.query);
   }
 
-  function createAppCard(app) {
+  function createAppCard(app, options = {}) {
     const article = document.createElement("article");
-    article.className = "app-card reveal is-visible";
+    article.className = `app-card reveal is-visible type-${app.type || "case-study"}`;
+    if (app.featured && app.type === "free") article.classList.add("is-featured");
 
     const button = document.createElement("button");
     button.type = "button";
@@ -139,64 +158,96 @@
     const icon = document.createElement("span");
     icon.className = "app-icon";
     icon.setAttribute("aria-hidden", "true");
-    icon.textContent = app.icon || "APP";
+    icon.textContent = app.icon || "AG";
     top.append(icon);
 
     const badges = document.createElement("div");
-    badges.className = "tag-list";
-    if (app.featured) {
-      const featured = document.createElement("span");
-      featured.className = "featured-badge";
-      featured.textContent = "おすすめ";
-      badges.append(featured);
-    }
-    const status = document.createElement("span");
-    status.className = "card-status";
-    status.textContent = app.status || "準備中";
-    badges.append(status);
+    badges.className = "badge-list";
+    if (app.label) badges.append(createBadge(app.label, "badge-soft"));
+    if (app.type === "free") badges.append(createBadge("FREE", "badge-free"));
+    if (app.type === "development") badges.append(createBadge("開発中", "badge-dev"));
+    if (app.type === "case-study") badges.append(createBadge("開発事例", "badge-case"));
+    badges.append(createBadge(app.status || "開発事例", "card-status"));
     top.append(badges);
 
     const category = document.createElement("p");
     category.className = "card-category";
-    category.textContent = app.categoryLabel || "その他";
+    category.textContent = app.category || "その他";
 
     const title = document.createElement("h3");
     title.className = "card-title";
     title.textContent = app.title || "名称未設定";
 
+    const catchCopy = document.createElement("p");
+    catchCopy.className = "card-catch";
+    catchCopy.textContent = app.catchCopy || "";
+    catchCopy.hidden = !app.catchCopy;
+
     const description = document.createElement("p");
     description.className = "card-description";
-    description.textContent = app.description || "";
+    description.textContent = app.description || "詳細準備中";
 
     const tags = document.createElement("div");
     tags.className = "tag-list";
-    (app.tags || []).forEach((tag) => {
+    (app.tags || []).slice(0, options.cardMode === "spotlight" ? 6 : 4).forEach((tag) => {
       const tagElement = document.createElement("span");
       tagElement.textContent = tag;
       tags.append(tagElement);
     });
 
-    const detail = document.createElement("span");
-    detail.className = "card-detail";
-    detail.textContent = "詳細を見る";
+    const action = document.createElement("span");
+    action.className = `card-detail ${app.type === "free" && hasUsableUrl(app) ? "is-openable" : ""}`;
+    action.textContent = getCardActionLabel(app);
 
-    button.append(top, category, title, description, tags, detail);
+    button.append(top, category, title, catchCopy, description);
+    if (app.features?.length && options.cardMode === "spotlight" && app.type === "free") {
+      button.append(createFeatureList(app.features.slice(0, 6)));
+    }
+    button.append(tags, action);
     article.append(button);
     return article;
+  }
+
+  function createBadge(text, className) {
+    const badge = document.createElement("span");
+    badge.className = className;
+    badge.textContent = text;
+    return badge;
+  }
+
+  function createFeatureList(features) {
+    const list = document.createElement("ul");
+    list.className = "mini-feature-list";
+    features.forEach((feature) => {
+      const item = document.createElement("li");
+      item.textContent = feature;
+      list.append(item);
+    });
+    return list;
+  }
+
+  function getCardActionLabel(app) {
+    if (app.type === "free") return hasUsableUrl(app) ? "無料で使う" : "近日公開";
+    if (app.type === "development") return app.progress || "開発中";
+    return "開発事例";
+  }
+
+  function hasUsableUrl(app) {
+    const url = (app.url || "").trim();
+    return Boolean(url && url !== "#");
   }
 
   function openModal(app) {
     const modal = $("#appModal");
     if (!modal) return;
-
     state.lastFocus = document.activeElement;
 
     setText("#modalTitle", app.title || "名称未設定");
-    setText("#modalCategory", app.categoryLabel || "その他");
-    setText("#modalIcon", app.icon || "APP");
-    setText("#modalStatus", app.status || "準備中");
-    setText("#modalDescription", app.description || "");
-    setText("#modalLongDescription", app.longDescription || "");
+    setText("#modalCategory", app.category || "その他");
+    setText("#modalIcon", app.icon || "AG");
+    setText("#modalStatus", app.status || "開発事例");
+    setText("#modalDescription", app.description || "詳細準備中");
+    setText("#modalLongDescription", app.longDescription || "詳細準備中");
 
     const icon = $("#modalIcon");
     if (icon) {
@@ -204,38 +255,63 @@
       icon.style.borderColor = app.accentColor || "#6dff9f";
     }
 
-    const tags = $("#modalTags");
-    if (tags) {
-      tags.innerHTML = "";
-      (app.tags || []).forEach((tag) => {
-        const tagElement = document.createElement("span");
-        tagElement.textContent = tag;
-        tags.append(tagElement);
-      });
-    }
+    renderModalDetails(app);
+    renderModalTags(app);
+    configureModalLink(app);
 
-    const openLink = $("#modalOpenLink");
-    const url = (app.url || "").trim();
-    if (openLink) {
-      if (url) {
-        openLink.href = url;
-        openLink.textContent = "アプリを開く";
-        openLink.classList.remove("is-disabled");
-        openLink.removeAttribute("aria-disabled");
-        openLink.removeAttribute("tabindex");
-      } else {
-        openLink.href = "#";
-        openLink.textContent = "準備中";
-        openLink.classList.add("is-disabled");
-        openLink.setAttribute("aria-disabled", "true");
-        openLink.setAttribute("tabindex", "-1");
-      }
-    }
+    const caseNote = $("#caseNote");
+    if (caseNote) caseNote.hidden = app.type !== "case-study";
 
     modal.hidden = false;
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
     $(".modal-panel")?.focus();
+  }
+
+  function renderModalDetails(app) {
+    const details = $("#modalDetails");
+    if (!details) return;
+    details.innerHTML = "";
+    const rows = [
+      ["解決したかった課題", app.longDescription || "詳細準備中"],
+      ["主な機能", app.features?.length ? app.features.join(" / ") : "詳細準備中"],
+      ["利用する人", app.targetUsers || "詳細準備中"],
+      ["対応端末", app.devices || "スマートフォン / パソコン"],
+      ["公開状態", app.status || "開発事例"],
+    ];
+    rows.forEach(([term, value]) => {
+      const item = document.createElement("div");
+      const dt = document.createElement("dt");
+      const dd = document.createElement("dd");
+      dt.textContent = term;
+      dd.textContent = value;
+      item.append(dt, dd);
+      details.append(item);
+    });
+  }
+
+  function renderModalTags(app) {
+    const tags = $("#modalTags");
+    if (!tags) return;
+    tags.innerHTML = "";
+    (app.tags || []).forEach((tag) => {
+      const tagElement = document.createElement("span");
+      tagElement.textContent = tag;
+      tags.append(tagElement);
+    });
+  }
+
+  function configureModalLink(app) {
+    const openLink = $("#modalOpenLink");
+    if (!openLink) return;
+    const canOpen = app.type === "free" && hasUsableUrl(app);
+    openLink.hidden = !canOpen;
+    if (canOpen) {
+      openLink.href = app.url.trim();
+      openLink.textContent = "無料で使う";
+    } else {
+      openLink.href = "#";
+    }
   }
 
   function closeModal() {
@@ -244,7 +320,6 @@
     modal.hidden = true;
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
-
     if (state.lastFocus && typeof state.lastFocus.focus === "function") {
       state.lastFocus.focus();
     }
@@ -252,29 +327,17 @@
 
   function bindModalEvents() {
     document.addEventListener("click", (event) => {
-      if (event.target.closest("[data-modal-close]")) {
-        closeModal();
-      }
-
-      const disabledLink = event.target.closest(".button.is-disabled");
-      if (disabledLink) {
-        event.preventDefault();
-      }
+      if (event.target.closest("[data-modal-close]")) closeModal();
     });
 
     document.addEventListener("keydown", (event) => {
       const modal = $("#appModal");
       if (!modal || modal.hidden) return;
-
       if (event.key === "Escape") {
         event.preventDefault();
         closeModal();
-        return;
       }
-
-      if (event.key === "Tab") {
-        keepFocusInsideModal(event);
-      }
+      if (event.key === "Tab") keepFocusInsideModal(event);
     });
   }
 
@@ -283,9 +346,9 @@
     if (!panel) return;
     const focusable = Array.from(
       panel.querySelectorAll(
-        'a[href]:not([tabindex="-1"]), button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        'a[href]:not([hidden]), button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
       ),
-    );
+    ).filter((element) => !element.hidden);
     if (focusable.length === 0) return;
 
     const first = focusable[0];
@@ -315,7 +378,7 @@
           }
         });
       },
-      { threshold: 0.14 },
+      { threshold: 0.12 },
     );
 
     elements.forEach((element) => observer.observe(element));
@@ -323,8 +386,6 @@
 
   function setText(selector, value) {
     const element = $(selector);
-    if (element) {
-      element.textContent = value;
-    }
+    if (element) element.textContent = value;
   }
 })();

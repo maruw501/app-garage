@@ -1,13 +1,13 @@
 const SITE_CONFIG = {
   siteName: "APP GARAGE",
   contactEmail: "maruw@outlook.jp",
-  contactSubject: "アプリ開発についての相談",
+  contactSubject: "アプリ・ホームページ制作についての相談",
   contactBodyItems: [
     "お名前：",
     "会社名・店舗名：",
     "現在困っていること：",
-    "作りたいアプリの内容：",
-    "希望する機能：",
+    "作りたいアプリ・ホームページの内容：",
+    "希望する機能・ページ内容：",
     "利用予定の端末：",
     "利用予定人数：",
     "ご予算：",

@@ -59,7 +59,7 @@
   }
 
   function renderFeaturedSections() {
-    renderSection("#freeAppGrid", apps.filter((app) => app.type === "free" || app.id === "free-app-02" || app.id === "free-app-03"), {
+    renderSection("#freeAppGrid", apps.filter((app) => app.type === "free"), {
       cardMode: "spotlight",
     });
     renderSection("#developmentGrid", apps.filter((app) => app.type === "development"), {
@@ -139,6 +139,7 @@
       app.description,
       app.longDescription,
       ...(app.features || []),
+      ...(app.usage || []),
       ...(app.tags || []),
     ]
       .join(" ")
@@ -262,6 +263,7 @@
     }
 
     renderModalDetails(app);
+    renderModalUsage(app);
     renderModalTags(app);
     configureModalLink(app);
 
@@ -296,6 +298,35 @@
     });
   }
 
+  function renderModalUsage(app) {
+    const usage = $("#modalUsage");
+    const terms = $("#modalFreeTerms");
+    const isFreeApp = app.type === "free";
+
+    if (terms) terms.hidden = !isFreeApp;
+    if (!usage) return;
+
+    usage.innerHTML = "";
+    usage.hidden = !isFreeApp;
+    if (!isFreeApp) return;
+
+    const title = document.createElement("h3");
+    title.textContent = "使い方";
+
+    const lead = document.createElement("p");
+    lead.textContent = "直感的に使えるようにしています。基本は画面の案内に沿って進めれば利用できます。";
+
+    const steps = Array.isArray(app.usage) && app.usage.length ? app.usage : ["アプリを開き、画面の案内に沿って入力します。"];
+    const list = document.createElement("ol");
+    steps.forEach((step) => {
+      const item = document.createElement("li");
+      item.textContent = step;
+      list.append(item);
+    });
+
+    usage.append(title, lead, list);
+  }
+
   function renderModalTags(app) {
     const tags = $("#modalTags");
     if (!tags) return;
@@ -314,7 +345,7 @@
     openLink.hidden = !canOpen;
     if (canOpen) {
       openLink.href = app.url.trim();
-      openLink.textContent = "無料で使う";
+      openLink.textContent = "アプリを開く（無料）";
     } else {
       openLink.href = "#";
     }

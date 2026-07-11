@@ -353,7 +353,6 @@ h3 {
 }
 
 .apps-section,
-.photorepo-section,
 .service-section,
 .pricing-section,
 .contact-section {
@@ -386,8 +385,48 @@ h3 {
 }
 
 .free-app-grid {
-  grid-template-columns: minmax(0, 1.35fr) repeat(2, minmax(220px, 0.82fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   align-items: stretch;
+}
+
+.free-policy {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+  gap: 22px;
+  margin-top: 28px;
+  border: 1px solid rgba(109, 255, 159, 0.26);
+  border-radius: var(--radius);
+  background: rgba(109, 255, 159, 0.055);
+  padding: clamp(20px, 4vw, 28px);
+}
+
+.free-policy h3 {
+  margin-top: 4px;
+}
+
+.free-policy p {
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+
+.free-policy ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.free-policy li {
+  border-top: 1px solid rgba(109, 255, 159, 0.18);
+  color: var(--ink);
+  padding-top: 10px;
+  font-weight: 800;
+}
+
+.free-policy li:first-child {
+  border-top: 0;
+  padding-top: 0;
 }
 
 .development-grid {
@@ -676,184 +715,6 @@ h3 {
   color: var(--muted);
 }
 
-.photorepo-section {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background:
-    linear-gradient(180deg, rgba(109, 255, 159, 0.05), transparent 26%),
-    rgba(8, 13, 12, 0.72);
-}
-
-.photorepo-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-  gap: 26px;
-  align-items: stretch;
-  border: 1px solid rgba(109, 255, 159, 0.4);
-  border-radius: var(--radius);
-  background:
-    linear-gradient(135deg, rgba(109, 255, 159, 0.11), transparent 44%),
-    rgba(16, 24, 23, 0.96);
-  padding: clamp(24px, 5vw, 44px);
-}
-
-.photorepo-hero h2 {
-  margin: 8px 0 0;
-  font-size: clamp(2.4rem, 8vw, 5.2rem);
-}
-
-.photorepo-catch {
-  max-width: 760px;
-  margin: 16px 0 0;
-  color: var(--ink);
-  font-size: clamp(1.12rem, 2.5vw, 1.55rem);
-  font-weight: 900;
-}
-
-.photorepo-hero p:not(.section-kicker, .photorepo-catch),
-.info-panel p {
-  color: var(--muted);
-}
-
-.photorepo-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.photorepo-summary {
-  display: grid;
-  align-content: center;
-  gap: 12px;
-}
-
-.photorepo-summary p {
-  margin: 0;
-  border-left: 3px solid var(--accent);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 14px 16px;
-  color: var(--ink);
-  font-weight: 900;
-}
-
-.photorepo-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
-}
-
-.photorepo-nav a {
-  display: inline-flex;
-  min-height: 40px;
-  align-items: center;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.035);
-  padding: 0 12px;
-  font-size: 0.86rem;
-  font-weight: 900;
-}
-
-.photorepo-nav a:hover,
-.photorepo-nav a:focus-visible {
-  border-color: var(--accent);
-  color: var(--accent);
-  outline: none;
-}
-
-.photorepo-content {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 28px;
-}
-
-.info-panel {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(16, 24, 23, 0.94);
-  padding: clamp(20px, 4vw, 28px);
-}
-
-.info-panel:nth-child(1),
-.info-panel:nth-child(2) {
-  grid-column: span 1;
-}
-
-.info-panel:nth-child(3),
-.info-panel:nth-child(4),
-.info-panel:nth-child(5),
-.info-panel:nth-child(6) {
-  grid-column: span 1;
-}
-
-.info-panel h3 {
-  margin: 8px 0 0;
-  font-size: clamp(1.45rem, 3vw, 2rem);
-}
-
-.info-list,
-.step-list {
-  display: grid;
-  gap: 10px;
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.info-list li,
-.step-list li {
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  padding-top: 10px;
-}
-
-.step-list li {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 12px;
-}
-
-.step-list span {
-  display: inline-grid;
-  width: 36px;
-  height: 36px;
-  place-items: center;
-  border: 1px solid rgba(109, 255, 159, 0.42);
-  color: var(--accent);
-  font-weight: 900;
-}
-
-.step-list p {
-  margin: 0;
-}
-
-.faq-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.faq-list details {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.035);
-  padding: 14px;
-}
-
-.faq-list summary {
-  color: var(--ink);
-  cursor: pointer;
-  font-weight: 900;
-}
-
-.faq-list p {
-  margin: 12px 0 0;
-}
-
 .service-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
@@ -1096,6 +957,39 @@ h3 {
   margin: 10px 0 0;
 }
 
+.modal-usage,
+.modal-free-terms {
+  margin-top: 18px;
+  border: 1px solid rgba(109, 255, 159, 0.24);
+  border-radius: var(--radius);
+  background: rgba(109, 255, 159, 0.055);
+  padding: 16px;
+}
+
+.modal-usage h3,
+.modal-free-terms h3 {
+  font-size: 1.05rem;
+}
+
+.modal-usage p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.modal-usage ol,
+.modal-free-terms ul {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+
+.modal-free-terms {
+  border-color: rgba(255, 189, 102, 0.3);
+  background: rgba(255, 189, 102, 0.06);
+}
+
 .modal-detail-grid {
   display: grid;
   gap: 10px;
@@ -1174,7 +1068,7 @@ h3 {
 
   .hero-grid,
   .service-grid,
-  .photorepo-hero,
+  .free-policy,
   .app-tools {
     grid-template-columns: 1fr;
   }
@@ -1183,8 +1077,7 @@ h3 {
   .development-grid,
   .case-grid,
   .app-grid,
-  .price-grid,
-  .photorepo-content {
+  .price-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1218,7 +1111,7 @@ h3 {
 
   .site-nav {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
     gap: 8px;
   }
 
@@ -1232,7 +1125,6 @@ h3 {
 
   .hero,
   .apps-section,
-  .photorepo-section,
   .service-section,
   .pricing-section,
   .contact-section {
@@ -1250,8 +1142,7 @@ h3 {
   .case-grid,
   .app-grid,
   .price-grid,
-  .price-support,
-  .photorepo-content {
+  .price-support {
     grid-template-columns: 1fr;
   }
 

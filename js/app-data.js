@@ -105,7 +105,7 @@ const APPS = [
     icon: "写",
     accentColor: "#6dff9f",
     tags: ["写真報告", "現場報告", "報告書作成", "PDF", "Excel", "スマホ対応"],
-    url: "https://script.google.com/macros/s/AKfycbyVl2fDZCn8bQ6rFEU5_YWEgX1egxb9c9Ogj0cnIz_eOuPEslR9jNHlchN8SQZ0NMDH/exec",
+    url: "https://app-garage.pages.dev/photorepo/",
     image: "",
     featured: true,
     published: true,

@@ -39,6 +39,12 @@
     const year = $("#copyrightYear");
     if (year) year.textContent = String(new Date().getFullYear());
 
+    const publishedFreeCount = apps.filter((app) => app.type === "free" && hasUsableUrl(app)).length;
+    const freeCount = $("[data-free-app-count]");
+    const freeStatus = $("[data-free-app-status]");
+    if (freeCount) freeCount.textContent = publishedFreeCount > 0 ? `${publishedFreeCount}個` : "3個";
+    if (freeStatus) freeStatus.textContent = publishedFreeCount > 0 ? "公開中" : "公開予定";
+
     const contactLink = $("[data-contact-link]");
     if (contactLink) {
       contactLink.href = buildMailto();

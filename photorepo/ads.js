@@ -1,8 +1,8 @@
 (function () {
-  const ADSENSE_CLIENT = "";
+  const ADSENSE_CLIENT = "ca-pub-1847456128680028";
   const AD_SLOTS = {
-    top: "",
-    bottom: "",
+    top: "4515255229",
+    bottom: "9565090284",
   };
 
   function canShowAd(slotName) {

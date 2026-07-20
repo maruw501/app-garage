@@ -343,11 +343,18 @@
     if (!openLink) return;
     const canOpen = app.type === "free" && hasUsableUrl(app);
     openLink.hidden = !canOpen;
+    openLink.toggleAttribute("aria-hidden", !canOpen);
+    openLink.tabIndex = canOpen ? 0 : -1;
     if (canOpen) {
       openLink.href = app.url.trim();
-      openLink.textContent = "アプリを開く（無料）";
+      openLink.target = "_blank";
+      openLink.rel = "noopener";
+      openLink.textContent = "無料で使う";
     } else {
-      openLink.href = "#";
+      openLink.removeAttribute("href");
+      openLink.removeAttribute("target");
+      openLink.removeAttribute("rel");
+      openLink.textContent = "";
     }
   }
 

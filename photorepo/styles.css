@@ -58,6 +58,36 @@ a {
   padding: 12px 0 18px;
 }
 
+.app-nav,
+.app-footer,
+.info-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.app-nav a,
+.app-footer a {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  background: #fff;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.app-nav a:hover,
+.app-nav a:focus-visible,
+.app-footer a:hover,
+.app-footer a:focus-visible {
+  border-color: var(--green);
+  color: var(--green);
+  outline: none;
+}
+
 .eyebrow {
   margin: 0 0 4px;
   color: var(--brand);
@@ -541,6 +571,78 @@ button:disabled {
   z-index: 5;
 }
 
+.info-panel {
+  display: grid;
+  gap: 16px;
+  line-height: 1.8;
+}
+
+.info-panel h2,
+.info-panel h3 {
+  color: var(--ink);
+}
+
+.info-panel p,
+.info-panel li {
+  color: var(--muted);
+}
+
+.info-panel p {
+  margin: 0;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.info-grid article,
+.guide-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfa;
+  padding: 14px;
+}
+
+.info-grid ul,
+.guide-card ul,
+.guide-card ol {
+  display: grid;
+  gap: 7px;
+  margin: 10px 0 0;
+  padding-left: 1.25rem;
+}
+
+.app-footer {
+  justify-content: center;
+  padding: 20px 0 0;
+}
+
+.guide-page {
+  display: grid;
+  gap: 14px;
+}
+
+.guide-hero {
+  border-left: 4px solid var(--brand);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.guide-hero p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
 .status-line {
   min-height: 22px;
   margin: 10px 0 0;
@@ -584,6 +686,11 @@ button:disabled {
   .app-header {
     display: block;
     padding: 4px 0 8px;
+  }
+
+  .app-nav {
+    justify-content: flex-start;
+    margin-top: 8px;
   }
 
   .eyebrow {
@@ -810,6 +917,11 @@ button:disabled {
   .output-panel {
     position: static;
     padding: 10px;
+  }
+
+  .info-grid,
+  .guide-grid {
+    grid-template-columns: 1fr;
   }
 
   .status-line {

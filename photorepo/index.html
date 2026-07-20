@@ -7,6 +7,7 @@
   <meta name="description" content="写真を撮ってコメントを入力するだけ。現場報告をPDF・Excelにまとめて共有できます。">
   <meta name="google-adsense-account" content="ca-pub-1847456128680028">
   <title>フォトレポ</title>
+  <link rel="canonical" href="https://app-garage.pages.dev/photorepo/">
   <link rel="stylesheet" href="./styles.css">
   <script src="./ads.js" defer></script>
 </head>
@@ -18,6 +19,12 @@
         <h1>フォトレポ</h1>
         <p class="tagline">撮る、書く、まとめる。現場報告をスマホひとつで。</p>
       </div>
+      <nav class="app-nav" aria-label="フォトレポ関連リンク">
+        <a href="./guide.html">使い方</a>
+        <a href="../privacy.html">プライバシー</a>
+        <a href="../terms.html">利用規約</a>
+        <a href="../">APP GARAGE</a>
+      </nav>
     </header>
     <main class="workspace">
       <section class="intro-copy" aria-label="アプリ紹介">
@@ -57,8 +64,45 @@
           <div class="download-actions"><a class="secondary-button" id="downloadLink" href="#" download>PDFを開く</a><button class="secondary-button" type="button" id="shareAgainButton">再共有</button></div>
         </div>
       </section>
+      <section class="panel info-panel" aria-labelledby="aboutPhotoRepo">
+        <h2 id="aboutPhotoRepo">フォトレポでできること</h2>
+        <p>
+          フォトレポは、点検、巡回、店舗確認、清掃確認、設備チェックなど、写真付きで状況を残したい場面に向けた無料Webアプリです。
+          写真とコメントをひとつのレポートにまとめ、PDFまたはExcelとして保存・共有できます。
+        </p>
+        <div class="info-grid">
+          <article>
+            <h3>主な用途</h3>
+            <ul>
+              <li>現場巡回や店舗点検の記録</li>
+              <li>修繕前後、清掃前後の写真報告</li>
+              <li>介護施設、店舗、事務所などの日常確認</li>
+              <li>社内共有用の簡易レポート作成</li>
+            </ul>
+          </article>
+          <article>
+            <h3>利用前の注意</h3>
+            <ul>
+              <li>入力内容は端末上で処理され、サーバー保存は行いません。</li>
+              <li>個人情報や機密情報を含む写真の扱いは、利用者の責任で確認してください。</li>
+              <li>無料提供のため、利用による損害について当方は責任を負いません。</li>
+            </ul>
+          </article>
+        </div>
+        <div class="info-actions">
+          <a class="secondary-button" href="./guide.html">詳しい使い方を見る</a>
+          <a class="secondary-button" href="../operator.html">運営者情報を見る</a>
+        </div>
+      </section>
       <aside class="ad-slot" id="adSlotBottom" aria-label="広告"><span class="ad-label">広告</span><div class="ad-code-target" data-ad-slot="bottom">広告掲載スペース</div></aside>
     </main>
+    <footer class="app-footer">
+      <a href="./guide.html">使い方・FAQ</a>
+      <a href="../privacy.html">プライバシーポリシー</a>
+      <a href="../terms.html">利用規約</a>
+      <a href="../operator.html">運営者情報</a>
+      <a href="../">APP GARAGE</a>
+    </footer>
   </div>
   <script src="./app.js"></script>
 </body>

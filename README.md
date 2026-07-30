@@ -78,6 +78,8 @@ status: "公開中",
 
 この場合だけ、カードと詳細画面に「無料で使う」ボタンが表示されます。
 
+PC用アプリのようにファイルサイズが大きい場合は、Cloudflare Pagesへ直接置かず、GitHub Releasesなどの無料配布ページを使い、APP GARAGE内には紹介ページを作成してリンクします。かんたんリンクは `kantanlink/index.html` からGitHub Releasesへ案内しています。
+
 ## 開発中アプリの追加方法
 
 `js/app-data.js` の `APPS` 配列へ、`type: "development"` のデータを追加します。

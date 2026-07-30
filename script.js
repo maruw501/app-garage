@@ -73,6 +73,8 @@
   function renderSection(selector, list, options) {
     const container = $(selector);
     if (!container) return;
+    const section = container.closest(".apps-section");
+    if (section) section.hidden = list.length === 0;
     container.innerHTML = "";
     list.forEach((app) => container.append(createAppCard(app, options)));
   }
@@ -87,13 +89,23 @@
   }
 
   function renderFilterTabs() {
-    renderTabs("#typeTabs", typeFilters, state.type, (id) => {
+    const visibleTypeFilters = typeFilters.filter((filter) => {
+      return filter.id === "all" || apps.some((app) => app.type === filter.id);
+    });
+    const visibleCategoryFilters = categoryFilters.filter((filter) => {
+      return filter.id === "all" || apps.some((app) => app.category === filter.id || (app.tags || []).includes(filter.id));
+    });
+
+    if (!visibleTypeFilters.some((filter) => filter.id === state.type)) state.type = "all";
+    if (!visibleCategoryFilters.some((filter) => filter.id === state.category)) state.category = "all";
+
+    renderTabs("#typeTabs", visibleTypeFilters, state.type, (id) => {
       state.type = id;
       renderFilterTabs();
       renderCatalog();
     });
 
-    renderTabs("#categoryTabs", categoryFilters, state.category, (id) => {
+    renderTabs("#categoryTabs", visibleCategoryFilters, state.category, (id) => {
       state.category = id;
       renderFilterTabs();
       renderCatalog();

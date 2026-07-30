@@ -19,7 +19,6 @@ const SITE_CONFIG = {
 const TYPE_FILTERS = [
   { id: "all", label: "すべて" },
   { id: "free", label: "無料アプリ" },
-  { id: "development", label: "開発中" },
   { id: "case-study", label: "開発事例" },
 ];
 
@@ -36,6 +35,7 @@ const CATEGORY_FILTERS = [
   { id: "社内ポータル", label: "社内ポータル" },
   { id: "予約管理", label: "予約管理" },
   { id: "報告書作成", label: "報告書作成" },
+  { id: "PCツール", label: "PCツール" },
 ];
 
 const APPS = [
@@ -112,25 +112,40 @@ const APPS = [
     label: "おすすめ",
   },
   {
-    id: "free-app-03",
-    title: "第3弾アプリ",
-    catchCopy: "",
-    category: "無料公開予定",
-    description: "現在、新しい無料アプリを開発しています。",
-    longDescription: "詳細準備中",
-    features: [],
-    targetUsers: "詳細準備中",
-    devices: "スマートフォン / パソコン",
-    status: "開発中",
-    progress: "企画中",
-    type: "development",
-    icon: "03",
-    accentColor: "#ffbd66",
-    tags: ["無料公開予定"],
-    url: "",
+    id: "kantan-link",
+    title: "かんたんリンク",
+    catchCopy: "よく使うWebページを、大きなボタンからすぐ開く。",
+    category: "PCツール",
+    description:
+      "よく使うWebページを、大きく見やすいボタンから開けるWindows用の無料ショートカットアプリです。",
+    longDescription:
+      "かんたんリンクは、毎日使うWebページを登録して、PCからすぐ開ける無料アプリです。4列×4行で最大16個のショートカットを表示でき、登録タブやよく使うショートカット機能で、仕事や日常のPC操作をスムーズにします。",
+    features: [
+      "1画面に最大16個のショートカットを表示",
+      "名前を変更できる5つの登録タブ",
+      "よく使うショートカットを自動表示",
+      "URLの登録・削除に対応",
+      "登録データは利用中のPC内だけに保存",
+      "広告・アプリ内課金・利用者情報の収集なし",
+    ],
+    usage: [
+      "紹介ページからWindows版インストーラーをダウンロードします。",
+      "インストーラーを実行し、画面の案内に沿ってインストールします。",
+      "よく使うWebページの名前とURLを登録します。",
+      "大きなボタンから、必要なページをすぐ開けます。",
+    ],
+    targetUsers: "よく使うWebページをPCでまとめて開きたい人、事務作業、店舗・施設スタッフ",
+    devices: "Windows 10 / Windows 11（64ビット版）",
+    status: "公開中",
+    type: "free",
+    icon: "PC",
+    accentColor: "#6dff9f",
+    tags: ["PCツール", "ショートカット", "Windows", "リンク管理", "業務効率化"],
+    url: "https://app-garage.pages.dev/kantanlink/",
     image: "",
-    featured: false,
+    featured: true,
     published: true,
+    label: "第3弾無料アプリ",
   },
   {
     id: "lunch-board",
@@ -173,7 +188,7 @@ const APPS = [
     url: "",
     image: "",
     featured: false,
-    published: true,
+    published: false,
   },
   {
     id: "clinic-reservation-system",
@@ -216,7 +231,7 @@ const APPS = [
     url: "",
     image: "",
     featured: false,
-    published: true,
+    published: false,
   },
   {
     id: "prompt-studio",
@@ -237,7 +252,7 @@ const APPS = [
     url: "",
     image: "",
     featured: false,
-    published: true,
+    published: false,
   },
   {
     id: "presidents-ambition",
@@ -258,7 +273,7 @@ const APPS = [
     url: "",
     image: "",
     featured: false,
-    published: true,
+    published: false,
   },
 ];
 

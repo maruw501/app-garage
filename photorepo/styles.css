@@ -752,6 +752,11 @@ button:disabled {
 
   .workspace {
     gap: 8px;
+    min-width: 0;
+  }
+
+  .workspace > * {
+    min-width: 0;
   }
 
   .ad-slot {
@@ -952,6 +957,7 @@ button:disabled {
   .photo-action-button,
   .file-picker {
     width: 100%;
+    min-width: 0;
   }
 
   .output-panel {

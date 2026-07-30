@@ -4,9 +4,11 @@
     top: "4515255229",
     bottom: "9565090284",
   };
+  let adsenseLoadPromise;
 
   function canShowAd(slotName) {
-    return ADSENSE_CLIENT.indexOf("ca-pub-") === 0 && Boolean(AD_SLOTS[slotName]);
+    const isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    return !isLocal && ADSENSE_CLIENT.indexOf("ca-pub-") === 0 && Boolean(AD_SLOTS[slotName]);
   }
 
   function hideSlot(target) {
@@ -15,24 +17,31 @@
   }
 
   function loadAdsenseScript() {
-    if (document.querySelector("script[data-adsense-loader]")) return;
+    if (adsenseLoadPromise) return adsenseLoadPromise;
 
-    const script = document.createElement("script");
-    script.async = true;
-    script.crossOrigin = "anonymous";
-    script.dataset.adsenseLoader = "true";
-    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(ADSENSE_CLIENT);
-    document.head.appendChild(script);
+    adsenseLoadPromise = new Promise(function (resolve, reject) {
+      const script = document.createElement("script");
+      script.id = "adsense-script";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      script.src =
+        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" +
+        encodeURIComponent(ADSENSE_CLIENT);
+      script.addEventListener("load", resolve, { once: true });
+      script.addEventListener("error", reject, { once: true });
+      document.head.appendChild(script);
+    });
+
+    return adsenseLoadPromise;
   }
 
-  function mountAd(target) {
+  async function mountAd(target) {
     const slotName = target.dataset.adSlot;
     if (!canShowAd(slotName)) {
       hideSlot(target);
       return;
     }
 
-    loadAdsenseScript();
     target.innerHTML = "";
 
     const ad = document.createElement("ins");
@@ -45,10 +54,18 @@
     target.appendChild(ad);
 
     try {
+      await loadAdsenseScript();
+      await new Promise(function (resolve) {
+        requestAnimationFrame(resolve);
+      });
+      if (target.clientWidth === 0) {
+        hideSlot(target);
+        return;
+      }
       window.adsbygoogle = window.adsbygoogle || [];
       window.adsbygoogle.push({});
     } catch (error) {
-      console.warn("広告を読み込めませんでした。", error);
+      hideSlot(target);
     }
   }
 

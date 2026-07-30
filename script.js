@@ -97,11 +97,22 @@
 
     const badges = document.createElement("div");
     badges.className = "badge-list";
+    let typeLabel = "";
     if (app.label) badges.append(createBadge(app.label, "badge-soft"));
-    if (app.type === "free") badges.append(createBadge("FREE", "badge-free"));
-    if (app.type === "development") badges.append(createBadge("開発中", "badge-dev"));
-    if (app.type === "case-study") badges.append(createBadge("開発事例", "badge-case"));
-    badges.append(createBadge(app.status || "開発事例", "card-status"));
+    if (app.type === "free") {
+      typeLabel = "FREE";
+      badges.append(createBadge(typeLabel, "badge-free"));
+    }
+    if (app.type === "development") {
+      typeLabel = "開発中";
+      badges.append(createBadge(typeLabel, "badge-dev"));
+    }
+    if (app.type === "case-study") {
+      typeLabel = "開発事例";
+      badges.append(createBadge(typeLabel, "badge-case"));
+    }
+    const statusLabel = app.status || "開発事例";
+    if (statusLabel !== typeLabel) badges.append(createBadge(statusLabel, "card-status"));
     top.append(badges);
 
     const category = document.createElement("p");
@@ -179,7 +190,7 @@
       const guideLink = document.createElement("a");
       guideLink.className = "free-card-guide";
       guideLink.href = guideUrl;
-      guideLink.textContent = `活用ガイド：${app.guideTitle || "便利な使い方"}`;
+      guideLink.textContent = `便利に使うコツ：${app.guideTitle || "使い方のヒント"}`;
       area.append(guideLink);
     }
 
@@ -214,7 +225,6 @@
     setText("#modalIcon", app.icon || "AG");
     setText("#modalStatus", app.status || "開発事例");
     setText("#modalDescription", app.description || "詳細準備中");
-    setText("#modalLongDescription", app.longDescription || "詳細準備中");
 
     const icon = $("#modalIcon");
     if (icon) {
@@ -241,8 +251,8 @@
     if (!details) return;
     details.innerHTML = "";
     const rows = [
-      ["解決したかった課題", app.longDescription || "詳細準備中"],
-      ["主な機能", app.features?.length ? app.features.join(" / ") : "詳細準備中"],
+      ["どんな仕事に使うか", app.longDescription || "詳細準備中"],
+      ["できること", app.features?.length ? app.features.join(" / ") : "詳細準備中"],
       ["利用する人", app.targetUsers || "詳細準備中"],
       ["対応端末", app.devices || "スマートフォン / パソコン"],
       ["公開状態", app.status || "開発事例"],

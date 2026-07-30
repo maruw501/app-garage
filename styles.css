@@ -139,7 +139,7 @@ a {
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 900;
-  letter-spacing: 0.11em;
+  letter-spacing: 0;
   text-decoration: none;
 }
 
@@ -2034,17 +2034,19 @@ button.app-card-button:focus-visible {
   }
 
   .nav-button {
-    width: 100%;
+    width: auto;
+    min-height: 42px;
+    padding: 0 14px;
   }
 
   .site-nav {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
   }
 
   .site-nav a {
-    min-height: 38px;
+    min-height: 36px;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     padding: 7px 8px;
@@ -2064,9 +2066,12 @@ button.app-card-button:focus-visible {
     font-size: 2.125rem;
   }
 
-  .guide-hub-hero h1,
+  .guide-hub-hero h1 {
+    font-size: 2.125rem;
+  }
+
   .guide-article-header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .hero-actions,
@@ -2187,9 +2192,12 @@ button.app-card-button:focus-visible {
     font-size: 2rem;
   }
 
-  .guide-hub-hero h1,
+  .guide-hub-hero h1 {
+    font-size: 2.05rem;
+  }
+
   .guide-article-header h1 {
-    font-size: 2.25rem;
+    font-size: 1.95rem;
   }
 }
 

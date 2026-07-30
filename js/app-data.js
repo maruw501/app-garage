@@ -16,28 +16,6 @@ const SITE_CONFIG = {
   ],
 };
 
-const TYPE_FILTERS = [
-  { id: "all", label: "すべて" },
-  { id: "free", label: "無料アプリ" },
-  { id: "case-study", label: "開発事例" },
-];
-
-const CATEGORY_FILTERS = [
-  { id: "all", label: "すべてのカテゴリ" },
-  { id: "アンケート作成", label: "アンケート作成" },
-  { id: "業務連絡", label: "業務連絡" },
-  { id: "店舗管理", label: "店舗管理" },
-  { id: "売上管理", label: "売上管理" },
-  { id: "集計ツール", label: "集計ツール" },
-  { id: "介護施設向け", label: "介護施設向け" },
-  { id: "画像生成支援", label: "画像生成支援" },
-  { id: "ゲーム", label: "ゲーム" },
-  { id: "社内ポータル", label: "社内ポータル" },
-  { id: "予約管理", label: "予約管理" },
-  { id: "報告書作成", label: "報告書作成" },
-  { id: "PCツール", label: "PCツール" },
-];
-
 const APPS = [
   {
     id: "sugukiku",
@@ -278,6 +256,4 @@ const APPS = [
 ];
 
 window.SITE_CONFIG = SITE_CONFIG;
-window.TYPE_FILTERS = TYPE_FILTERS;
-window.CATEGORY_FILTERS = CATEGORY_FILTERS;
 window.APPS = APPS;

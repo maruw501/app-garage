@@ -730,6 +730,26 @@ h3 {
   gap: 14px;
 }
 
+.scope-note {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.65fr) minmax(0, 1.35fr);
+  gap: 28px;
+  margin-top: 28px;
+  border: 1px solid rgba(113, 167, 255, 0.3);
+  border-radius: var(--radius);
+  background: rgba(113, 167, 255, 0.055);
+  padding: clamp(20px, 4vw, 28px);
+}
+
+.scope-note h3 {
+  margin-top: 4px;
+}
+
+.scope-note p:last-child {
+  margin: 0;
+  color: var(--muted);
+}
+
 .service-card,
 .price-card {
   border: 1px solid var(--line);
@@ -1224,6 +1244,7 @@ h3 {
 
   .hero-grid,
   .service-grid,
+  .scope-note,
   .free-policy,
   .app-tools {
     grid-template-columns: 1fr;

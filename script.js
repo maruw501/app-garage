@@ -3,15 +3,8 @@
 
   const config = window.SITE_CONFIG || {};
   const apps = Array.isArray(window.APPS) ? window.APPS.filter((app) => app.published !== false) : [];
-  const typeFilters = Array.isArray(window.TYPE_FILTERS) ? window.TYPE_FILTERS : [{ id: "all", label: "すべて" }];
-  const categoryFilters = Array.isArray(window.CATEGORY_FILTERS)
-    ? window.CATEGORY_FILTERS
-    : [{ id: "all", label: "すべてのカテゴリ" }];
 
   const state = {
-    type: "all",
-    category: "all",
-    query: "",
     lastFocus: null,
   };
 
@@ -23,9 +16,6 @@
   function init() {
     applySiteConfig();
     renderFeaturedSections();
-    renderFilterTabs();
-    renderCatalog();
-    bindSearch();
     bindModalEvents();
     setupRevealAnimation();
   }
@@ -77,86 +67,6 @@
     if (section) section.hidden = list.length === 0;
     container.innerHTML = "";
     list.forEach((app) => container.append(createAppCard(app, options)));
-  }
-
-  function bindSearch() {
-    const searchInput = $("#appSearch");
-    if (!searchInput) return;
-    searchInput.addEventListener("input", (event) => {
-      state.query = event.target.value.trim().toLowerCase();
-      renderCatalog();
-    });
-  }
-
-  function renderFilterTabs() {
-    const visibleTypeFilters = typeFilters.filter((filter) => {
-      return filter.id === "all" || apps.some((app) => app.type === filter.id);
-    });
-    const visibleCategoryFilters = categoryFilters.filter((filter) => {
-      return filter.id === "all" || apps.some((app) => app.category === filter.id || (app.tags || []).includes(filter.id));
-    });
-
-    if (!visibleTypeFilters.some((filter) => filter.id === state.type)) state.type = "all";
-    if (!visibleCategoryFilters.some((filter) => filter.id === state.category)) state.category = "all";
-
-    renderTabs("#typeTabs", visibleTypeFilters, state.type, (id) => {
-      state.type = id;
-      renderFilterTabs();
-      renderCatalog();
-    });
-
-    renderTabs("#categoryTabs", visibleCategoryFilters, state.category, (id) => {
-      state.category = id;
-      renderFilterTabs();
-      renderCatalog();
-    });
-  }
-
-  function renderTabs(selector, filters, activeId, onSelect) {
-    const tabs = $(selector);
-    if (!tabs) return;
-    tabs.innerHTML = "";
-    filters.forEach((filter) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = filter.label;
-      button.setAttribute("aria-pressed", String(filter.id === activeId));
-      button.addEventListener("click", () => onSelect(filter.id));
-      tabs.append(button);
-    });
-  }
-
-  function renderCatalog() {
-    const grid = $("#appGrid");
-    const empty = $("#emptyState");
-    if (!grid || !empty) return;
-
-    const visibleApps = apps.filter(matchesCurrentFilter);
-    grid.innerHTML = "";
-    visibleApps.forEach((app) => grid.append(createAppCard(app, { cardMode: "catalog" })));
-    empty.hidden = visibleApps.length > 0;
-  }
-
-  function matchesCurrentFilter(app) {
-    if (state.type !== "all" && app.type !== state.type) return false;
-    if (state.category !== "all" && app.category !== state.category && !(app.tags || []).includes(state.category)) {
-      return false;
-    }
-    if (!state.query) return true;
-
-    const searchable = [
-      app.title,
-      app.catchCopy,
-      app.category,
-      app.description,
-      app.longDescription,
-      ...(app.features || []),
-      ...(app.usage || []),
-      ...(app.tags || []),
-    ]
-      .join(" ")
-      .toLowerCase();
-    return searchable.includes(state.query);
   }
 
   function createAppCard(app, options = {}) {

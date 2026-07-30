@@ -19,9 +19,9 @@
     <meta name="google-adsense-account" content="ca-pub-1847456128680028">
     <link rel="canonical" href="https://app-garage.pages.dev/">
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css?v=20260730-kantanlink">
-    <script src="js/app-data.js?v=20260730-kantanlink" defer></script>
-    <script src="script.js?v=20260730-kantanlink" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20260730-ai-scope">
+    <script src="js/app-data.js?v=20260730-ai-scope" defer></script>
+    <script src="script.js?v=20260730-ai-scope" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">本文へ移動</a>
@@ -35,9 +35,9 @@
 
         <nav class="site-nav" aria-label="メインメニュー">
           <a href="#free-apps">FREE</a>
-          <a href="#apps">APPS</a>
           <a href="#case-studies">WORKS</a>
           <a href="#service">SERVICE</a>
+          <a href="#pricing">PRICE</a>
           <a href="#contact">CONTACT</a>
         </nav>
 
@@ -138,40 +138,6 @@
         <div class="case-grid" id="caseStudyGrid" aria-live="polite"></div>
       </section>
 
-      <section class="apps-section section-shell" id="apps" aria-labelledby="apps-title">
-        <div class="section-heading reveal">
-          <p class="section-kicker">CATALOG</p>
-          <h2 id="apps-title">アプリ一覧</h2>
-          <p>公開中の無料アプリと、内容を整理済みの開発事例をまとめて検索できます。</p>
-        </div>
-
-        <div class="app-tools reveal" aria-label="アプリ検索と絞り込み">
-          <label class="search-box" for="appSearch">
-            <span>キーワード検索</span>
-            <input
-              id="appSearch"
-              type="search"
-              autocomplete="off"
-              placeholder="アプリ名、説明、カテゴリ、タグ、機能で検索"
-            >
-          </label>
-          <div class="filter-stack">
-            <div class="filter-tabs" id="typeTabs" role="group" aria-label="種類で絞り込み"></div>
-            <div class="filter-tabs filter-tabs-secondary" id="categoryTabs" role="group" aria-label="カテゴリで絞り込み"></div>
-          </div>
-        </div>
-
-        <div class="app-grid" id="appGrid" aria-live="polite"></div>
-        <p class="empty-state" id="emptyState" hidden>該当するアプリがありません</p>
-
-        <noscript>
-          <section class="noscript-panel" aria-label="アプリ一覧">
-            <h3>アプリ一覧</h3>
-            <p>JavaScriptが無効な場合、検索や詳細表示は利用できません。主な掲載内容は「すぐ聞く」「フォトレポ」「かんたんリンク」「昼食連絡ボード」などです。</p>
-          </section>
-        </noscript>
-      </section>
-
       <section class="service-section section-shell" id="service" aria-labelledby="service-title">
         <div class="service-grid">
           <div class="section-heading reveal">
@@ -219,13 +185,22 @@
             </article>
           </div>
         </div>
+        <aside class="scope-note reveal" aria-labelledby="scope-title">
+          <div>
+            <p class="section-kicker">ORDER SCOPE</p>
+            <h3 id="scope-title">ご依頼いただける範囲について</h3>
+          </div>
+          <p>
+            基本的に、AIを活用して安全に開発・動作確認できる規模と内容のご依頼を承ります。高度なセキュリティ要件、大規模な外部システム連携、医療判断などの専門領域を含む案件は、内容を確認したうえでお引き受けできない場合があります。まずは無料相談で、実現できる範囲を一緒に整理します。
+          </p>
+        </aside>
       </section>
 
       <section class="pricing-section section-shell" id="pricing" aria-labelledby="pricing-title">
         <div class="section-heading reveal">
           <p class="section-kicker">PRICE</p>
           <h2 id="pricing-title">料金の目安</h2>
-          <p>小さく始めて、必要に応じて機能を育てていける料金設計です。</p>
+          <p>企画・設計・制作のすべての工程でAIを活用し、開発時間を短縮することで、手の届きやすい価格で提供しています。</p>
         </div>
         <div class="price-grid">
           <article class="price-card price-card-highlight reveal">

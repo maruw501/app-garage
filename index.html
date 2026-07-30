@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8">
@@ -19,9 +19,9 @@
     <meta name="google-adsense-account" content="ca-pub-1847456128680028">
     <link rel="canonical" href="https://app-garage.pages.dev/">
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css?v=20260730-ai-scope">
-    <script src="js/app-data.js?v=20260730-ai-scope" defer></script>
-    <script src="script.js?v=20260730-ai-scope" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20260730-sugukiku">
+    <script src="js/app-data.js?v=20260730-sugukiku" defer></script>
+    <script src="script.js?v=20260730-sugukiku" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">本文へ移動</a>
@@ -57,13 +57,13 @@
             <p>
               スマートフォンですぐ使える便利な無料アプリを公開しています。店舗運営、介護、クリニック予約、事務作業、アンケート、集計など、お客様専用のWebアプリ開発やホームページ作成にも対応します。
             </p>
-            <div class="hero-actions" aria-label="主要リンク">
+            <div class="hero-actions" role="group" aria-label="主要リンク">
               <a class="button button-primary" href="#free-apps">無料アプリを見る</a>
               <a class="button button-secondary" href="#contact">アプリ開発を相談する</a>
             </div>
           </div>
 
-          <div class="hero-panel reveal" aria-label="サイト概要">
+          <aside class="hero-panel reveal" aria-label="サイト概要">
             <div class="terminal-bar" aria-hidden="true">
               <span></span>
               <span></span>
@@ -93,10 +93,10 @@
             </div>
             <div class="console-preview" aria-hidden="true">
               <p><span>&gt;</span> free apps: roadmap ready</p>
-              <p><span>&gt;</span> custom apps & websites: business / care / store</p>
+              <p><span>&gt;</span> custom apps &amp; websites: business / care / store</p>
               <p><span>&gt;</span> static site: Cloudflare Pages</p>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
 
@@ -147,7 +147,7 @@
               市販のサービスでは使いにくい業務や、紙、Excel、LINEなどで管理している作業を、お客様専用の使いやすいWebアプリにします。クリニックの予約管理システムや、シンプルなホームページ作成にも対応します。
             </p>
           </div>
-          <div class="service-list" aria-label="開発サービス">
+          <section class="service-list" aria-label="開発サービス">
             <article class="service-card reveal">
               <span>01</span>
               <h3>業務効率化アプリ</h3>
@@ -183,7 +183,7 @@
               <h3>ホームページ作成</h3>
               <p>事業内容、料金、問い合わせ先が伝わる、スマートフォン対応のシンプルなホームページを作成します。</p>
             </article>
-          </div>
+          </section>
         </div>
         <aside class="scope-note reveal" aria-labelledby="scope-title">
           <div>
@@ -225,7 +225,7 @@
             <p>月額保守を付けず、完成したアプリを買い切るプランにも対応します。開発内容や引き渡し方法によって料金をお見積りします。</p>
           </article>
         </div>
-        <div class="price-support reveal" aria-label="安心して相談できる条件">
+        <div class="price-support reveal" role="group" aria-label="安心して相談できる条件">
           <article>
             <span>返品保証</span>
             <p>仕上がりに満足いただけなかった場合は、納品後2週間以内にご連絡ください。アプリは回収し、開発費はいただきません。</p>
@@ -250,7 +250,7 @@
           <p>
             作りたいアプリやホームページの内容が決まっていなくても問題ありません。現在困っている作業や、伝えたい内容をお知らせください。
           </p>
-          <ul class="contact-points" aria-label="お問い合わせの特徴">
+          <ul class="contact-points">
             <li>初回相談無料</li>
             <li>見積り後に検討可能</li>
             <li>3回まで無料修正</li>
@@ -311,7 +311,7 @@
           </ul>
         </div>
         <div class="modal-detail-grid" id="modalDetails"></div>
-        <div class="modal-tags" id="modalTags" aria-label="タグ"></div>
+        <div class="modal-tags" id="modalTags"></div>
         <p class="case-note" id="caseNote" hidden>
           ※こちらは開発事例です。現在、一般公開はしていません。同様の機能を、お客様の業務に合わせて開発できます。
         </p>

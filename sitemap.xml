@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://app-garage.pages.dev/</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://app-garage.pages.dev/sugukiku/</loc>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://app-garage.pages.dev/photorepo/</loc>
@@ -18,14 +22,14 @@
   </url>
   <url>
     <loc>https://app-garage.pages.dev/privacy.html</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://app-garage.pages.dev/terms.html</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://app-garage.pages.dev/operator.html</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-30</lastmod>
   </url>
 </urlset>

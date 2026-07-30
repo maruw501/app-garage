@@ -637,6 +637,46 @@ button:disabled {
   line-height: 1.8;
 }
 
+.quick-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 16px 0 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1px 0;
+  background: var(--line);
+  list-style: none;
+}
+
+.quick-flow li {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  background: #fff;
+  padding: 12px;
+}
+
+.quick-flow span {
+  color: var(--brand);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.quick-flow strong {
+  color: var(--ink);
+}
+
+.quick-flow small {
+  color: var(--muted);
+}
+
+.guide-open-button {
+  display: inline-flex;
+  margin-top: 14px;
+  text-decoration: none;
+}
+
 .guide-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -921,6 +961,10 @@ button:disabled {
 
   .info-grid,
   .guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-flow {
     grid-template-columns: 1fr;
   }
 

@@ -39,7 +39,7 @@ assets/
 
 アプリ情報は `js/app-data.js` の `APPS` 配列で管理しています。
 
-HTMLへ直接アプリ情報を書き込む必要はありません。新しいアプリを追加するときは、`APPS` 配列へ1件追加するだけで、無料アプリまたは開発事例のセクションと詳細モーダルへ自動表示されます。
+HTMLへ直接アプリ情報を書き込む必要はありません。新しいアプリを追加するときは、`APPS` 配列へ1件追加するだけで自動表示されます。無料アプリには利用先・使い方・活用ガイドへのリンクが表示され、開発中アプリと開発事例は詳細モーダルで表示されます。
 
 ```js
 {
@@ -58,6 +58,10 @@ HTMLへ直接アプリ情報を書き込む必要はありません。新しい�
   accentColor: "#6dff9f",
   tags: ["タグ1", "タグ2"],
   url: "",
+  detailsUrl: "",
+  guideUrl: "",
+  actionLabel: "今すぐ無料で使う",
+  guideTitle: "活用ガイドのタイトル",
   image: "",
   featured: false,
   published: true,
@@ -74,20 +78,24 @@ status: "近日公開",
 url: "",
 ```
 
-`url` が空欄、または `"#"` の場合は「無料で使う」ボタンを表示せず、「近日公開」と表示します。
+`url` が空欄、または `"#"` の場合は利用ボタンを表示せず、「近日公開」と表示します。
 
 公開URLが決まったら、次のように `url` を設定してください。
 
 ```js
 url: "https://example.pages.dev/",
+detailsUrl: "sample-app/",
+guideUrl: "guides/sample-app.html",
+actionLabel: "今すぐ無料で使う",
+guideTitle: "便利な使い方",
 status: "公開中",
 ```
 
-この場合だけ、カードと詳細画面に「無料で使う」ボタンが表示されます。
+`url` は実際のアプリまたはダウンロード先、`detailsUrl` はAPP GARAGE内の使い方ページ、`guideUrl` は関連する活用ガイドです。公開中の無料アプリカードには「利用する」「使い方を見る」「活用ガイド」のリンクが直接表示され、途中でモーダルは開きません。
 
 PC用アプリのようにファイルサイズが大きい場合は、Cloudflare Pagesへ直接置かず、GitHub Releasesなどの無料配布ページを使い、APP GARAGE内には紹介ページを作成してリンクします。かんたんリンクは `kantanlink/index.html` からGitHub Releasesへ案内しています。
 
-すぐ聞くの紹介、使い方、FAQ、データの取り扱いは `sugukiku/index.html` にまとめています。実際のアプリURLは、この紹介ページ内の「すぐ聞くを無料で使う」ボタンに設定します。
+すぐ聞くの紹介、使い方、FAQ、データの取り扱いは `sugukiku/index.html` にまとめています。ホームから実際のアプリへ直接開くURLは、`js/app-data.js` のすぐ聞くデータにある `url` で管理します。
 
 ## 実用ガイドの更新方法
 

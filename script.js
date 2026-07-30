@@ -74,12 +74,17 @@
     article.className = `app-card reveal is-visible type-${app.type || "case-study"}`;
     if (app.featured && app.type === "free") article.classList.add("is-featured");
 
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "app-card-button";
-    button.style.setProperty("--app-accent", app.accentColor || "#6dff9f");
-    button.setAttribute("aria-label", `${app.title}の詳細を見る`);
-    button.addEventListener("click", () => openModal(app));
+    const isFreeApp = app.type === "free";
+    const cardControl = document.createElement(isFreeApp ? "div" : "button");
+    cardControl.className = `app-card-button${isFreeApp ? " app-card-surface" : ""}`;
+    cardControl.style.setProperty("--app-accent", app.accentColor || "#6dff9f");
+    if (isFreeApp) {
+      cardControl.setAttribute("aria-labelledby", `app-title-${app.id}`);
+    } else {
+      cardControl.type = "button";
+      cardControl.setAttribute("aria-label", `${app.title}の詳細を見る`);
+      cardControl.addEventListener("click", () => openModal(app));
+    }
 
     const top = document.createElement("div");
     top.className = "card-top";
@@ -105,6 +110,7 @@
 
     const title = document.createElement("h3");
     title.className = "card-title";
+    if (isFreeApp) title.id = `app-title-${app.id}`;
     title.textContent = app.title || "名称未設定";
 
     const catchCopy = document.createElement("p");
@@ -118,23 +124,66 @@
 
     const tags = document.createElement("div");
     tags.className = "tag-list";
-    (app.tags || []).slice(0, options.cardMode === "spotlight" ? 6 : 4).forEach((tag) => {
+    (app.tags || []).slice(0, options.cardMode === "spotlight" ? 3 : 4).forEach((tag) => {
       const tagElement = document.createElement("span");
       tagElement.textContent = tag;
       tags.append(tagElement);
     });
 
-    const action = document.createElement("span");
-    action.className = `card-detail ${app.type === "free" && hasUsableUrl(app) ? "is-openable" : ""}`;
-    action.textContent = getCardActionLabel(app);
+    cardControl.append(top, category, title, catchCopy, description);
 
-    button.append(top, category, title, catchCopy, description);
-    if (app.features?.length && options.cardMode === "spotlight" && app.type === "free") {
-      button.append(createFeatureList(app.features.slice(0, 6)));
+    if (isFreeApp) {
+      cardControl.append(createFreeCardActions(app));
+    } else {
+      cardControl.append(tags);
+      const action = document.createElement("span");
+      action.className = "card-detail";
+      action.textContent = getCardActionLabel(app);
+      cardControl.append(action);
     }
-    button.append(tags, action);
-    article.append(button);
+
+    article.append(cardControl);
     return article;
+  }
+
+  function createFreeCardActions(app) {
+    const area = document.createElement("div");
+    area.className = "free-card-actions";
+
+    if (hasUsableUrl(app)) {
+      const openLink = document.createElement("a");
+      openLink.className = "button button-primary";
+      openLink.href = app.url.trim();
+      openLink.target = "_blank";
+      openLink.rel = "noopener";
+      openLink.textContent = app.actionLabel || "今すぐ無料で使う";
+      area.append(openLink);
+    } else {
+      const unavailable = document.createElement("span");
+      unavailable.className = "card-detail free-card-unavailable";
+      unavailable.textContent = "近日公開";
+      area.append(unavailable);
+    }
+
+    const detailsUrl = (app.detailsUrl || "").trim();
+    if (detailsUrl && detailsUrl !== "#") {
+      const detailsLink = document.createElement("a");
+      detailsLink.className = "button button-secondary";
+      detailsLink.href = detailsUrl;
+      detailsLink.textContent = "使い方を見る";
+      area.append(detailsLink);
+    }
+
+    const guideUrl = (app.guideUrl || "").trim();
+    if (guideUrl && guideUrl !== "#") {
+      const guideLink = document.createElement("a");
+      guideLink.className = "free-card-guide";
+      guideLink.href = guideUrl;
+      guideLink.textContent = `活用ガイド：${app.guideTitle || "便利な使い方"}`;
+      area.append(guideLink);
+    }
+
+    return area;
   }
 
   function createBadge(text, className) {
@@ -142,17 +191,6 @@
     badge.className = className;
     badge.textContent = text;
     return badge;
-  }
-
-  function createFeatureList(features) {
-    const list = document.createElement("ul");
-    list.className = "mini-feature-list";
-    features.forEach((feature) => {
-      const item = document.createElement("li");
-      item.textContent = feature;
-      list.append(item);
-    });
-    return list;
   }
 
   function getCardActionLabel(app) {

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
@@ -10,6 +10,27 @@
   <link rel="canonical" href="https://app-garage.pages.dev/photorepo/">
   <link rel="stylesheet" href="./styles.css">
   <script src="./ads.js" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "フォトレポ",
+      "description": "写真とコメントから現場報告書を作成し、PDFまたはExcelで保存・共有できる無料Webアプリです。",
+      "url": "https://app-garage.pages.dev/photorepo/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "JPY"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "APP GARAGE",
+        "url": "https://app-garage.pages.dev/"
+      }
+    }
+  </script>
 </head>
 <body>
   <div class="app-shell">
@@ -31,7 +52,7 @@
         <strong>写真報告、スマホで完結。</strong>
         <span>写真を撮ってコメントを入力するだけ。現場の状況をPDF・Excelにまとめて、すぐに共有できます。</span>
       </section>
-      <aside class="ad-slot" id="adSlotTop" aria-label="広告"><span class="ad-label">広告</span><div class="ad-code-target" data-ad-slot="top">広告掲載スペース</div></aside>
+      <aside class="ad-slot" id="adSlotTop" aria-label="ページ上部の広告"><span class="ad-label">広告</span><div class="ad-code-target" data-ad-slot="top">広告掲載スペース</div></aside>
       <section class="panel setup-panel" aria-label="巡回情報">
         <div class="panel-title"><h2>巡回情報</h2></div>
         <div class="form-grid">
@@ -90,14 +111,16 @@
           </article>
         </div>
         <div class="info-actions">
+          <a class="secondary-button" href="../guides/photo-report.html">現場報告書の作り方</a>
           <a class="secondary-button" href="./guide.html">詳しい使い方を見る</a>
           <a class="secondary-button" href="../operator.html">運営者情報を見る</a>
         </div>
       </section>
-      <aside class="ad-slot" id="adSlotBottom" aria-label="広告"><span class="ad-label">広告</span><div class="ad-code-target" data-ad-slot="bottom">広告掲載スペース</div></aside>
+      <aside class="ad-slot" id="adSlotBottom" aria-label="ページ下部の広告"><span class="ad-label">広告</span><div class="ad-code-target" data-ad-slot="bottom">広告掲載スペース</div></aside>
     </main>
     <footer class="app-footer">
       <a href="./guide.html">使い方・FAQ</a>
+      <a href="../guides/">実用ガイド</a>
       <a href="../privacy.html">プライバシーポリシー</a>
       <a href="../terms.html">利用規約</a>
       <a href="../operator.html">運営者情報</a>

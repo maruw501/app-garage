@@ -11,8 +11,15 @@ index.html
 styles.css
 script.js
 README.md
+404.html
+_headers
 js/
   app-data.js
+guides/
+  index.html
+  smart-survey.html
+  photo-report.html
+  pc-shortcuts.html
 assets/
   icons/
     favicon.svg
@@ -81,6 +88,19 @@ status: "公開中",
 PC用アプリのようにファイルサイズが大きい場合は、Cloudflare Pagesへ直接置かず、GitHub Releasesなどの無料配布ページを使い、APP GARAGE内には紹介ページを作成してリンクします。かんたんリンクは `kantanlink/index.html` からGitHub Releasesへ案内しています。
 
 すぐ聞くの紹介、使い方、FAQ、データの取り扱いは `sugukiku/index.html` にまとめています。実際のアプリURLは、この紹介ページ内の「すぐ聞くを無料で使う」ボタンに設定します。
+
+## 実用ガイドの更新方法
+
+実用ガイドは `guides/` フォルダで管理しています。
+
+```text
+guides/index.html          ガイド一覧
+guides/smart-survey.html   アンケート作成ガイド
+guides/photo-report.html   写真付き現場報告ガイド
+guides/pc-shortcuts.html   PCショートカット整理ガイド
+```
+
+記事を追加するときは、`guides/index.html` とトップページのガイド欄へリンクを追加し、`sitemap.xml` に公開URLを登録します。実際に確認できる機能と独自の内容だけを掲載し、内容がほぼ同じページを増やさないでください。
 
 ## 開発中アプリの追加方法
 

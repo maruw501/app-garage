@@ -19,9 +19,9 @@
     <meta name="google-adsense-account" content="ca-pub-1847456128680028">
     <link rel="canonical" href="https://app-garage.pages.dev/">
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css?v=20260731-polish">
-    <script src="js/app-data.js?v=20260731-polish" defer></script>
-    <script src="script.js?v=20260731-polish" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20260731-impact">
+    <script src="js/app-data.js?v=20260731-impact" defer></script>
+    <script src="script.js?v=20260731-impact" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -45,7 +45,10 @@
       <div class="header-inner">
         <a class="brand" href="#top" aria-label="APP GARAGEトップへ">
           <span class="brand-mark" aria-hidden="true">AG</span>
-          <span class="brand-text" data-site-name>APP GARAGE</span>
+          <span class="brand-lockup">
+            <span class="brand-text" data-site-name>APP GARAGE</span>
+            <small>AIアプリクリエイター</small>
+          </span>
         </a>
 
         <nav class="site-nav" aria-label="メインメニュー">
@@ -63,29 +66,16 @@
       <section class="home-hero" id="top" aria-labelledby="hero-title">
         <div class="home-hero-inner section-shell">
           <div class="hero-copy reveal">
-            <p class="hero-eyebrow"><span aria-hidden="true"></span>AIアプリクリエイター</p>
-            <h1 id="hero-title">無料アプリを公開。<br><em>あなた専用の<br>アプリも開発します。</em></h1>
+            <p class="hero-eyebrow"><span aria-hidden="true"></span>無料アプリ3本公開中</p>
+            <h1 id="hero-title">面倒な作業を、<br><em>アプリでもっと<br>シンプルに。</em></h1>
             <p class="hero-lead">
-              スマートフォンですぐ使える3つの無料Webアプリを公開しています。店舗、クリニック、介護施設などの業務に合わせたアプリ制作も、2万円からご相談いただけます。
+              アンケート作成、写真報告、PCのリンク整理。すぐ使える無料アプリを公開しています。ぴったりの仕組みがなければ、仕事に合わせた専用アプリを制作します。
             </p>
             <div class="hero-actions" role="group" aria-label="主要リンク">
-              <a class="button button-primary" href="#free-apps">無料アプリを使う</a>
-              <a class="button button-secondary" href="#contact">制作を相談する</a>
+              <a class="button button-primary" href="#free-apps">3つの無料アプリを試す</a>
+              <a class="button button-secondary" href="#contact">2万円～で制作相談</a>
             </div>
-            <dl class="hero-facts">
-              <div>
-                <dt>無料アプリ</dt>
-                <dd><strong data-free-app-count>3本</strong><span data-free-app-status>公開中</span></dd>
-              </div>
-              <div>
-                <dt>専用アプリ</dt>
-                <dd><strong>20,000円～</strong><span>特別価格</span></dd>
-              </div>
-              <div>
-                <dt>ホームページ</dt>
-                <dd><strong>15,000円</strong><span>スマホ対応</span></dd>
-              </div>
-            </dl>
+            <nav class="hero-app-rail" id="heroAppRail" aria-label="公開中の無料アプリ"></nav>
           </div>
 
           <div class="hero-gallery reveal">
@@ -107,7 +97,7 @@
               >
               <figcaption><strong>フォトレポ</strong><span>写真報告</span></figcaption>
             </figure>
-            <p class="hero-gallery-label"><strong>3</strong><span>FREE<br>APPS</span></p>
+            <p class="hero-gallery-label"><strong>3</strong><span>無料アプリ<br>公開中</span></p>
           </div>
         </div>
       </section>
@@ -117,10 +107,10 @@
           <div class="home-section-heading reveal">
             <div>
               <p class="section-kicker">無料アプリ / 3 APPS</p>
-              <h2 id="free-title">すぐ使える、<br>3つの無料アプリ。</h2>
+              <h2 id="free-title">今すぐ試せる、<br>3つの無料アプリ。</h2>
             </div>
             <p>
-              アンケート作成、写真報告、PC用ショートカットを無料で利用できます。各カードからアプリを開くか、先に使い方を確認できます。
+              欲しい機能を選び、その場ですぐ使えます。操作が不安なときは、各アプリの使い方を先に確認できます。
             </p>
           </div>
           <div class="free-app-grid" id="freeAppGrid" aria-live="polite"></div>
@@ -136,9 +126,9 @@
         <div class="section-shell">
           <div class="service-intro reveal">
             <p class="section-kicker">オーダーメイド制作</p>
-            <h2 id="service-title">今の仕事を、<br>もっと簡単にするアプリ。</h2>
+            <h2 id="service-title">毎日の「これ面倒」を、<br>使いやすい仕組みに。</h2>
             <p>
-              紙、Excel、LINEなどに分かれた作業を、ひとつのWebアプリにまとめます。まず必要な機能だけを作るので、費用を抑えて始められます。
+              紙、Excel、LINEなどに分かれた作業を、ひとつのWebアプリにまとめます。必要な機能だけを作るので、小さく始められます。
             </p>
             <a class="text-link" href="#contact">作れるか相談する <span aria-hidden="true">→</span></a>
           </div>
@@ -147,35 +137,35 @@
             <li class="reveal">
               <span>01</span>
               <div>
-                <h3>業務アプリ</h3>
-                <p>入力、集計、報告、点検を少ない操作にまとめます。</p>
+                <h3>入力・集計をひとつに</h3>
+                <p>毎日の入力、集計、報告、点検を少ない操作にまとめます。</p>
               </div>
             </li>
             <li class="reveal">
               <span>02</span>
               <div>
-                <h3>予約・受付管理</h3>
-                <p>クリニックの予約枠や受付状況、店舗の予約や予定をまとめます。</p>
+                <h3>予約・受付を見える化</h3>
+                <p>クリニックの予約枠や受付状況、店舗の予約や予定を確認しやすくします。</p>
               </div>
             </li>
             <li class="reveal">
               <span>03</span>
               <div>
-                <h3>アンケート・フォーム</h3>
-                <p>スマートフォンから迷わず回答できる画面を作ります。</p>
+                <h3>回答しやすいフォームに</h3>
+                <p>スマートフォンから迷わず回答できるアンケートや申込画面を作ります。</p>
               </div>
             </li>
             <li class="reveal">
               <span>04</span>
               <div>
-                <h3>社内専用ツール</h3>
+                <h3>関係者だけで情報共有</h3>
                 <p>一般公開せず、社内や関係者だけで使う仕組みに対応します。</p>
               </div>
             </li>
             <li class="reveal">
               <span>05</span>
               <div>
-                <h3>ホームページ</h3>
+                <h3>事業の魅力が伝わるページに</h3>
                 <p>事業内容、料金、問い合わせ先を1ページで分かりやすく伝えます。</p>
               </div>
             </li>
@@ -212,8 +202,8 @@
         <div class="section-shell">
           <div class="pricing-heading reveal">
             <p class="section-kicker">料金</p>
-            <h2 id="pricing-title"><span>まず試しやすい</span> <span>価格から。</span></h2>
-            <p>内容を確認し、制作前に正式な金額をご案内します。</p>
+            <h2 id="pricing-title"><span>必要な機能だけ。</span> <span>費用もシンプルに。</span></h2>
+            <p>小規模なアプリは特別価格20,000円～。制作前に正式な金額をご案内します。</p>
           </div>
 
           <div class="pricing-layout">
@@ -256,9 +246,9 @@
         <div class="section-shell contact-layout">
           <div class="reveal">
             <p class="section-kicker">初回相談無料</p>
-            <h2 id="contact-title">まだ形になっていない相談も、<br>お聞かせください。</h2>
+            <h2 id="contact-title">「これ、面倒」を<br>まず聞かせてください。</h2>
             <p>
-              「この入力を楽にしたい」「予約をまとめたい」など、今困っていることだけで大丈夫です。見積りを見てから依頼するか決められます。
+              作りたいものが決まっていなくても大丈夫です。今困っている作業を聞き、アプリで解決できるか一緒に整理します。
             </p>
           </div>
           <div class="contact-action reveal">
@@ -268,7 +258,7 @@
               <li>買い切りプラン対応</li>
               <li>社内専用アプリ対応</li>
             </ul>
-            <a class="button button-contact" href="#" data-contact-link>メールで無料相談</a>
+            <a class="button button-contact" href="#" data-contact-link>困っている作業を相談する</a>
             <small>メールソフトが開きます</small>
           </div>
         </div>

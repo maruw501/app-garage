@@ -16,6 +16,7 @@
   function init() {
     applySiteConfig();
     renderFeaturedSections();
+    renderHeroAppRail();
     bindModalEvents();
     setupRevealAnimation();
   }
@@ -57,6 +58,39 @@
     });
     renderSection("#caseStudyGrid", apps.filter((app) => app.type === "case-study"), {
       cardMode: "case-study",
+    });
+  }
+
+  function renderHeroAppRail() {
+    const rail = $("#heroAppRail");
+    if (!rail) return;
+    const freeApps = apps.filter((app) => app.type === "free" && hasUsableUrl(app)).slice(0, 3);
+    rail.innerHTML = "";
+
+    freeApps.forEach((app, index) => {
+      const link = document.createElement("a");
+      const detailsUrl = (app.detailsUrl || "").trim();
+      link.href = detailsUrl && detailsUrl !== "#" ? detailsUrl : app.url.trim();
+      link.setAttribute("aria-label", `${app.title}の紹介を見る`);
+
+      const number = document.createElement("span");
+      number.className = "hero-app-number";
+      number.textContent = String(index + 1).padStart(2, "0");
+
+      const copy = document.createElement("span");
+      const title = document.createElement("strong");
+      title.textContent = app.title;
+      const label = document.createElement("small");
+      label.textContent = app.heroLabel || app.category || "無料アプリ";
+      copy.append(title, label);
+
+      const arrow = document.createElement("span");
+      arrow.className = "hero-app-arrow";
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = "→";
+
+      link.append(number, copy, arrow);
+      rail.append(link);
     });
   }
 
@@ -204,8 +238,8 @@
       const image = document.createElement("img");
       image.src = app.image;
       image.alt = app.imageAlt || `${app.title || "アプリ"}の画面`;
-      image.width = 390;
-      image.height = 844;
+  image.width = app.imageWidth || 780;
+  image.height = app.imageHeight || 877;
       image.loading = "lazy";
       media.append(image);
       return media;

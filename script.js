@@ -32,7 +32,7 @@
     const publishedFreeCount = apps.filter((app) => app.type === "free" && hasUsableUrl(app)).length;
     const freeCount = $("[data-free-app-count]");
     const freeStatus = $("[data-free-app-status]");
-    if (freeCount) freeCount.textContent = publishedFreeCount > 0 ? `${publishedFreeCount}個` : "3個";
+    if (freeCount) freeCount.textContent = publishedFreeCount > 0 ? `${publishedFreeCount}本` : "3本";
     if (freeStatus) freeStatus.textContent = publishedFreeCount > 0 ? "公開中" : "公開予定";
 
     const contactLink = $("[data-contact-link]");
@@ -141,16 +141,20 @@
       tags.append(tagElement);
     });
 
-    cardControl.append(top, category, title, catchCopy, description);
+    const content = document.createElement("div");
+    content.className = "app-card-content";
+    content.append(top, category, title, catchCopy, description);
 
     if (isFreeApp) {
-      cardControl.append(createFreeCardActions(app));
+      content.append(createFreeCardActions(app));
+      cardControl.append(createAppCardMedia(app), content);
     } else {
-      cardControl.append(tags);
+      content.append(tags);
       const action = document.createElement("span");
       action.className = "card-detail";
       action.textContent = getCardActionLabel(app);
-      cardControl.append(action);
+      content.append(action);
+      cardControl.append(content);
     }
 
     article.append(cardControl);
@@ -190,11 +194,47 @@
       const guideLink = document.createElement("a");
       guideLink.className = "free-card-guide";
       guideLink.href = guideUrl;
-      guideLink.textContent = `便利に使うコツ：${app.guideTitle || "使い方のヒント"}`;
+      guideLink.textContent = "使い方のコツ";
       area.append(guideLink);
     }
 
     return area;
+  }
+
+  function createAppCardMedia(app) {
+    const media = document.createElement("div");
+    media.className = "app-card-media";
+
+    if (app.image) {
+      const image = document.createElement("img");
+      image.src = app.image;
+      image.alt = app.imageAlt || `${app.title || "アプリ"}の画面`;
+      image.width = 390;
+      image.height = 844;
+      image.loading = "lazy";
+      media.append(image);
+      return media;
+    }
+
+    media.classList.add("app-card-media-fallback");
+    const windowBar = document.createElement("div");
+    windowBar.className = "linkboard-window-bar";
+    ["", "", ""].forEach(() => {
+      const dot = document.createElement("span");
+      windowBar.append(dot);
+    });
+
+    const heading = document.createElement("p");
+    heading.textContent = "よく使うページ";
+    const shortcutGrid = document.createElement("div");
+    shortcutGrid.className = "linkboard-grid";
+    ["予約", "売上", "勤怠", "日報", "週報", "社内"].forEach((label) => {
+      const shortcut = document.createElement("span");
+      shortcut.textContent = label;
+      shortcutGrid.append(shortcut);
+    });
+    media.append(windowBar, heading, shortcutGrid);
+    return media;
   }
 
   function createBadge(text, className) {

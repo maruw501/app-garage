@@ -112,7 +112,9 @@
       badges.append(createBadge(typeLabel, "badge-case"));
     }
     const statusLabel = app.status || "開発事例";
-    if (statusLabel !== typeLabel) badges.append(createBadge(statusLabel, "card-status"));
+    if (app.type !== "free" && statusLabel !== typeLabel) {
+      badges.append(createBadge(statusLabel, "card-status"));
+    }
     top.append(badges);
 
     const category = document.createElement("p");
@@ -135,7 +137,8 @@
 
     const tags = document.createElement("div");
     tags.className = "tag-list";
-    (app.tags || []).slice(0, options.cardMode === "spotlight" ? 3 : 4).forEach((tag) => {
+    const tagLimit = options.cardMode === "case-study" ? 3 : 4;
+    (app.tags || []).slice(0, tagLimit).forEach((tag) => {
       const tagElement = document.createElement("span");
       tagElement.textContent = tag;
       tags.append(tagElement);
@@ -183,19 +186,11 @@
     const detailsUrl = (app.detailsUrl || "").trim();
     if (detailsUrl && detailsUrl !== "#") {
       const detailsLink = document.createElement("a");
-      detailsLink.className = "button button-secondary";
+      detailsLink.className = "free-card-details";
       detailsLink.href = detailsUrl;
-      detailsLink.textContent = "使い方を見る";
+      detailsLink.textContent = "使い方を確認";
+      detailsLink.setAttribute("aria-label", `${app.title || "アプリ"}の使い方を確認`);
       area.append(detailsLink);
-    }
-
-    const guideUrl = (app.guideUrl || "").trim();
-    if (guideUrl && guideUrl !== "#") {
-      const guideLink = document.createElement("a");
-      guideLink.className = "free-card-guide";
-      guideLink.href = guideUrl;
-      guideLink.textContent = "使い方のコツ";
-      area.append(guideLink);
     }
 
     return area;
@@ -247,7 +242,7 @@
   function getCardActionLabel(app) {
     if (app.type === "free") return hasUsableUrl(app) ? "無料で使う" : "近日公開";
     if (app.type === "development") return app.progress || "開発中";
-    return "開発事例";
+    return "詳細を見る";
   }
 
   function hasUsableUrl(app) {

@@ -2232,6 +2232,14 @@ button.app-card-button:focus-visible {
   background: var(--home-dark);
 }
 
+.home-page .brand-text,
+.home-page .hero-eyebrow,
+.home-page .section-kicker,
+.home-page .card-category,
+.home-page .app-icon {
+  letter-spacing: 0;
+}
+
 .home-page .site-header {
   border-color: rgba(255, 255, 255, 0.09);
   background: rgba(7, 11, 9, 0.9);
@@ -2669,7 +2677,7 @@ button.app-card-button:focus-visible {
 .home-page .free-card-actions {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 8px;
+  gap: 12px;
   margin-top: auto;
   padding-top: 22px;
 }
@@ -2681,17 +2689,27 @@ button.app-card-button:focus-visible {
   font-size: 0.86rem;
 }
 
-.home-page .free-card-actions .button-secondary {
-  color: #0b1510;
-  border-color: #b7c2bb;
-  background: transparent;
+.home-page .free-card-details {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  color: #254b38;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-decoration: none;
 }
 
-.home-page .free-card-guide {
-  justify-self: center;
-  color: #345144;
-  font-size: 0.78rem;
-  font-weight: 850;
+.home-page .free-card-details::after {
+  margin-left: 7px;
+  content: "→";
+}
+
+.home-page .free-card-details:hover,
+.home-page .free-card-details:focus-visible {
+  color: #087b39;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .free-use-note {
@@ -2814,16 +2832,36 @@ button.app-card-button:focus-visible {
 
 .home-page .case-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
 }
 
 .home-page .case-grid .app-card-button {
-  min-height: 350px;
+  min-height: 330px;
   border-color: rgba(255, 255, 255, 0.12);
   border-radius: 4px;
   background: #161e1a;
-  padding: 24px;
+  padding: 28px;
+}
+
+.home-page .case-grid .app-card-content {
+  display: flex;
+  min-height: 272px;
+  flex-direction: column;
+}
+
+.home-page .case-grid .card-title {
+  font-size: 1.55rem;
+}
+
+.home-page .case-grid .card-catch {
+  margin-top: 12px;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.home-page .case-grid .card-description {
+  max-width: 48ch;
 }
 
 .home-page .case-grid button.app-card-button:hover,
@@ -2835,6 +2873,11 @@ button.app-card-button:focus-visible {
 
 .home-page .case-grid .card-detail {
   margin-top: auto;
+}
+
+.home-page .case-grid .card-detail::after {
+  margin-left: 8px;
+  content: "→";
 }
 
 .home-pricing {
@@ -3303,9 +3346,7 @@ button.app-card-button:focus-visible {
   }
 
   .hero-gallery {
-    height: 300px;
-    min-height: 0;
-    margin-top: 42px;
+    display: none;
   }
 
   .hero-screen-main {

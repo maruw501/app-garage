@@ -57,7 +57,7 @@ const APPS = [
     imageAlt: "無料アンケートアプリ「すぐ聞く」の登録画面",
     featured: true,
     published: true,
-    label: "第1弾無料アプリ",
+    label: "",
   },
   {
     id: "free-app-02",
@@ -139,7 +139,7 @@ const APPS = [
     imageAlt: "かんたんリンクのショートカット画面イメージ",
     featured: false,
     published: true,
-    label: "第3弾無料アプリ",
+    label: "",
   },
   {
     id: "lunch-board",

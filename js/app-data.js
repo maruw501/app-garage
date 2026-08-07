@@ -136,7 +136,7 @@ const APPS = [
     icon: "PC",
     accentColor: "#6dff9f",
     tags: ["PCツール", "ショートカット", "Windows", "リンク管理", "業務効率化"],
-    url: "https://github.com/maruw501/app-garage/releases/download/kantanlink-v1.2.0/KantanLink-Setup-1.2.0.exe",
+    url: "https://github.com/maruw501/app-garage/releases/download/kantanlink-v1.9.1/KantanLink-Setup-1.9.1.exe",
     detailsUrl: "kantanlink/",
     guideUrl: "guides/pc-shortcuts.html",
     actionLabel: "Windows版をダウンロード",
